@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="description" content="None" /><link rel="canonical" href="https://rco123.github.io/man_shell_program/" />
+      <link rel="shortcut icon" href="img/favicon.ico" />
+    <title>쉘프로그램(Bash)</title>
+    <link rel="stylesheet" href="css/theme.css" />
+    <link rel="stylesheet" href="css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="css/style.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Home";
+        var mkdocs_page_input_path = "index.md";
+        var mkdocs_page_url = "/man_shell_program/";
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="." class="icon icon-home"> 쉘프로그램(Bash)
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="./search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="#">Home</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#_1">과정 개요</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_2">기대 효과</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#bash-shell">교육목차: Bash Shell 프로그래밍</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#1-bash">1. Bash 및 리눅스 환경 개요</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#2-bash">2. Bash 스크립트 기본 문법</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#3-bash">3. Bash 스크립트 활용: 파일 및 프로세스 제어</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#4-bash">4. Bash와 시스템 관리 자동화</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#5-bash">5. 고급 Bash 프로그래밍</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#6">6. 실무 프로젝트 및 실습</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#8-qa">8. 최종 정리 및 Q&amp;A</a>
+    </li>
+        </ul>
+    </li>
+    </ul>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">1. 시작하기</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="ch01/1.bash/">1.1 개요</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="ch01/2.cmd/">1.2 cmd</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="ch01/3.app/">1.3 app</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">2. 변수</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="ch02/1.var/">2.1 변수만들기</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="ch02/2.var_ext/">2.2 변수확장</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="ch02/3.math/">2.3 숫자연산</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="ch02/4.exam/">2.4 실습</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="ch02/5.array/">2.5 배열</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">3. 문자열</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="ch03/1.string/">3.1 문자열</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="ch03/2.char/">3.2 특수문자</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="ch03/3.exam/">3.3 실습</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">4. 함수</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="ch04/1.func/">4.1 함수만들기</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="ch04/2.return/">4.2 반환값I</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="ch04/3.return_ex/">4.3 반환값II</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">5. 명령어</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="ch05/1.stdio/">5.1 표준입출력</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="ch05/2.run/">5.2 명령실행</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="ch05/3.pipe/">5.3 파이프</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">6. 명령어II</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="ch06/1.find/">6.1 find</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="ch06/2.grep/">6.2 grep</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="ch06/3.grep_ext/">6.3 grep 정규식</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="ch06/4.rm/">6.4 rm</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="ch06/5.rm_ext/">6.5 rm 제외</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="ch06/6.ps/">6.6 ps 제외</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="ch06/7.kill/">6.7 kill 제외</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">7. 제어문</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="ch07/1.control/">7.1 제어문</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="ch07/2.condi/">6.2 조건연산자</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">8. 환경변수</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="ch08/1.login/">7.1 로그인</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="ch08/2.bashrc/">6.2 bashrc</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">9. 스크립트</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="ch09/1.systemd/">9.1 systemd I</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="ch09/2.systemdu/">9.2 systemd II</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="ch09/3.crontab/">9.3 crontab</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href=".">쉘프로그램(Bash)</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="." class="icon icon-home" aria-label="Docs"></a></li>
+      <li class="breadcrumb-item active">Home</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="bash">쉘 프로그래밍 (Bash)</h1>
+<div style="height:30px"></div>
+
+<div style="text-align: right;">
+<h3> BK SYSTEM DEV PART (www.bk123.co.kr)</h3>
+</div>
+
+<hr />
+<p><center>
+<img  src="./imgs/shell.png"  width="500"  height="400" /> 
+</center>
+<center>
+[Rco shell script programming]
+</center></p>
+<h2 id="_1">과정 개요</h2>
+<p>본 교육 과정은 <strong>Bash Shell 프로그래밍</strong> 을 활용하여 <strong>리눅스 환경에서의 자동화 및 시스템 관리 기법</strong> 을 체계적으로 학습하고, 실무에 적용할 수 있도록 설계되었습니다.  </p>
+<p>Bash는 UNIX 및 Linux 환경에서 가장 널리 사용되는 쉘(Shell)로, 명령어 실행, 스크립트 작성, 프로세스 관리, 시스템 모니터링 등 다양한 작업을 자동화하는 강력한 도구입니다.  </p>
+<p>본 과정을 통해 <strong>쉘 스크립트 기초부터 고급 활용까지</strong> 폭넓게 다루며, 실습 중심의 교육을 통해 <strong>파일 처리, 조건문 및 반복문, 배치 작업, 네트워크 및 시스템 관리 자동화</strong> 등을 직접 구현할 수 있습니다.  </p>
+<p>최근 DevOps 및 클라우드 환경에서 <strong>효율적인 시스템 관리와 자동화의 중요성</strong> 이 더욱 커짐에 따라, Bash 프로그래밍은 <strong>개발자 및 시스템 엔지니어의 필수 역량</strong> 이 되고 있습니다. 본 교육을 통해 리눅스 기반 자동화 기술을 익히고, 다양한 운영 환경에서 즉시 적용 가능한 <strong>실무 능력을 단기간에 확보</strong> 할 수 있을 것입니다. 🚀</p>
+<hr />
+<h2 id="_2">기대 효과</h2>
+<ul>
+<li><strong>리눅스 자동화 및 시스템 관리 역량</strong>: Bash 스크립트를 활용하여 파일 및 프로세스 관리, 시스템 모니터링, 백업 자동화 등 다양한 관리 작업을 효과적으로 수행할 수 있음  </li>
+<li><strong>효율적인 업무 자동화</strong>: 반복적인 작업을 스크립트로 구현하여 DevOps, 서버 관리, 데이터 처리 등 실무에서 즉시 활용 가능  </li>
+<li><strong>네트워크 및 배포 자동화 능력</strong>: 원격 서버 관리, 로그 분석, 배치 작업 스케줄링 등을 통해 효율적인 시스템 운영이 가능  </li>
+<li><strong>다양한 프로젝트 응용</strong>: 시스템 유지보수, 클라우드 환경 자동화, 컨테이너 오케스트레이션, 데이터 분석 워크플로우 등 다양한 분야에 활용 가능  </li>
+<li><strong>실무 적용 역량 강화</strong>: 실습 중심의 교육을 통해 실제 리눅스 환경에서 Bash 스크립트를 직접 작성하고 운영할 수 있는 실무 능력 확보  </li>
+</ul>
+<hr />
+<h2 id="bash-shell"><strong>교육목차: Bash Shell 프로그래밍</strong></h2>
+<h3 id="1-bash"><strong>1. Bash 및 리눅스 환경 개요</strong></h3>
+<p>1) <strong>리눅스 기본 개념</strong><br />
+   - UNIX/Linux의 개념과 구조<br />
+   - 파일 시스템 및 디렉토리 구조<br />
+   - 프로세스 및 메모리 관리  </p>
+<p>2) <strong>쉘과 쉘 스크립트 개요</strong><br />
+   - 쉘(Shell)과 쉘 프로그래밍의 역할<br />
+   - 다양한 쉘 종류 (Bash, Zsh, Fish 등)<br />
+   - Bash 쉘의 특징 및 장점  </p>
+<hr />
+<h3 id="2-bash"><strong>2. Bash 스크립트 기본 문법</strong></h3>
+<p>1) <strong>기본 명령어 및 스크립트 작성</strong><br />
+   - Bash 스크립트 실행 방법 (<code>#!/bin/bash</code>, <code>chmod +x script.sh</code>)<br />
+   - 변수 선언 및 활용 (<code>$var</code>, <code>export</code>)<br />
+   - 사용자 입력 처리 (<code>read</code>, <code>echo</code>)  </p>
+<p>2) <strong>제어문 및 반복문</strong><br />
+   - 조건문 (<code>if</code>, <code>case</code>)<br />
+   - 반복문 (<code>for</code>, <code>while</code>, <code>until</code>)<br />
+   - 논리 연산 (<code>&amp;&amp;</code>, <code>||</code>)  </p>
+<p>3) <strong>함수(Function) 활용</strong><br />
+   - 함수 정의 및 호출 (<code>function my_func {}</code>)<br />
+   - 매개변수와 반환값 처리  </p>
+<hr />
+<h3 id="3-bash"><strong>3. Bash 스크립트 활용: 파일 및 프로세스 제어</strong></h3>
+<p>1) <strong>파일 및 디렉토리 관리</strong><br />
+   - <code>ls</code>, <code>cd</code>, <code>mkdir</code>, <code>rm</code>, <code>cp</code>, <code>mv</code><br />
+   - <code>find</code>, <code>grep</code>, <code>sed</code>, <code>awk</code>를 활용한 데이터 처리  </p>
+<p>2) <strong>프로세스 및 작업 관리</strong><br />
+   - 백그라운드 및 포그라운드 작업 (<code>&amp;</code>, <code>jobs</code>, <code>fg</code>, <code>bg</code>)<br />
+   - 프로세스 상태 조회 (<code>ps</code>, <code>top</code>, <code>htop</code>)<br />
+   - 신호 제어 (<code>kill</code>, <code>trap</code>)  </p>
+<hr />
+<h3 id="4-bash"><strong>4. Bash와 시스템 관리 자동화</strong></h3>
+<p>1) <strong>시스템 로그 분석 및 관리</strong><br />
+   - <code>dmesg</code>, <code>/var/log</code>, <code>journalctl</code><br />
+   - <code>cron</code>을 활용한 자동화 작업 스케줄링  </p>
+<p>2) <strong>사용자 및 권한 관리</strong><br />
+   - <code>who</code>, <code>w</code>, <code>id</code>, <code>groups</code><br />
+   - <code>chmod</code>, <code>chown</code>, <code>sudo</code>  </p>
+<p>3) <strong>네트워크 관리 및 자동화</strong><br />
+   - <code>ping</code>, <code>netstat</code>, <code>ss</code>, <code>ifconfig</code>, <code>ip</code><br />
+   - SSH를 활용한 원격 명령 실행 (<code>ssh</code>, <code>scp</code>)  </p>
+<hr />
+<h3 id="5-bash"><strong>5. 고급 Bash 프로그래밍</strong></h3>
+<p>1) <strong>스크립트 디버깅 및 오류 처리</strong><br />
+   - <code>set -x</code>, <code>set -e</code>, <code>trap</code><br />
+   - 로그 파일 생성 및 관리  </p>
+<p>2) <strong>입출력 리디렉션 및 파이프라인</strong><br />
+   - 표준 입출력 (<code>stdin</code>, <code>stdout</code>, <code>stderr</code>)<br />
+   - <code>|</code>, <code>&gt;</code> 및 <code>&gt;&gt;</code>를 활용한 데이터 흐름 제어  </p>
+<p>3) <strong>배열과 연산자</strong><br />
+   - Bash 배열 사용 (<code>arr=(value1 value2)</code>)<br />
+   - 산술 연산 (<code>$((1+1))</code>), 문자열 처리 (<code>${var//search/replace}</code>)  </p>
+<hr />
+<h3 id="6"><strong>6. 실무 프로젝트 및 실습</strong></h3>
+<p>1) <strong>파일 백업 및 로그 정리 자동화</strong><br />
+2) <strong>시스템 리소스 모니터링 스크립트 작성</strong><br />
+3) <strong>서버 원격 관리 및 배포 자동화 스크립트 구현</strong><br />
+4) <strong>네트워크 스크립트 작성 (서버 가용성 체크 등)</strong>  </p>
+<hr />
+<h3 id="8-qa"><strong>8. 최종 정리 및 Q&amp;A</strong></h3>
+<ul>
+<li>Bash 프로그래밍 핵심 요약  </li>
+<li>추가 학습 자료 및 실전 활용 가이드  </li>
+<li>질의응답 및 프로젝트 발표  </li>
+</ul>
+<hr />
+<p>본 교육을 통해 참가자들은 Bash를 활용한 **효율적인 시스템 관리 및 자동화 스크립트 개발 역량**을 갖추고, 실무에서 **반복 작업을 자동화하고 운영 효율을 높이는 스킬**을 익힐 수 있습니다. 🚀</p>
+<p><br></p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="ch01/1.bash/" class="btn btn-neutral float-right" title="1.1 개요">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+    
+      <span><a href="ch01/1.bash/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = ".";</script>
+    <script src="js/theme_extra.js"></script>
+    <script src="js/theme.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+      <script src="search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>
+
+<!--
+MkDocs version : 1.6.1
+Build Date UTC : 2025-02-27 10:08:55.378149+00:00
+-->

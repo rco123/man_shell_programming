@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://rco123.github.io/man_shell_program/ch04/3.return_ex/" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>4.3 반환값II - 쉘프로그램(Bash)</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../../css/style.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "4.3 \ubc18\ud658\uac12II";
+        var mkdocs_page_input_path = "ch04\\3.return_ex.md";
+        var mkdocs_page_url = "/man_shell_program/ch04/3.return_ex/";
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> 쉘프로그램(Bash)
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../..">Home</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">1. 시작하기</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch01/1.bash/">1.1 개요</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch01/2.cmd/">1.2 cmd</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch01/3.app/">1.3 app</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">2. 변수</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch02/1.var/">2.1 변수만들기</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch02/2.var_ext/">2.2 변수확장</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch02/3.math/">2.3 숫자연산</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch02/4.exam/">2.4 실습</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch02/5.array/">2.5 배열</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">3. 문자열</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch03/1.string/">3.1 문자열</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch03/2.char/">3.2 특수문자</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch03/3.exam/">3.3 실습</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">4. 함수</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../1.func/">4.1 함수만들기</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../2.return/">4.2 반환값I</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">4.3 반환값II</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#1">1. $() 없이 실행할 경우</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#_2">예제</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_3">실행 결과</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#_4">❌ 잘못된 이유</a>
+    </li>
+        </ul>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#2">2. $()를 사용하여 함수 실행 (올바른 방법)</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#_5">예제</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_6">실행 결과</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#_7">✅ 올바른 이유</a>
+    </li>
+        </ul>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#3-backticks-vs">3. backticks (\``) vs$()` 차이</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#_8">$()와 백틱(``) 차이 예제</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#4-return">4. return을 사용한 함수는 $()로 값을 받을 수 없는 이유</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#return">잘못된 예제 (return 사용)</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#echo">올바른 예제 (echo 사용)</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#5">5. 정리</a>
+    </li>
+    </ul>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">5. 명령어</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch05/1.stdio/">5.1 표준입출력</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch05/2.run/">5.2 명령실행</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch05/3.pipe/">5.3 파이프</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">6. 명령어II</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch06/1.find/">6.1 find</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch06/2.grep/">6.2 grep</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch06/3.grep_ext/">6.3 grep 정규식</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch06/4.rm/">6.4 rm</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch06/5.rm_ext/">6.5 rm 제외</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch06/6.ps/">6.6 ps 제외</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch06/7.kill/">6.7 kill 제외</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">7. 제어문</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch07/1.control/">7.1 제어문</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch07/2.condi/">6.2 조건연산자</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">8. 환경변수</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch08/1.login/">7.1 로그인</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch08/2.bashrc/">6.2 bashrc</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">9. 스크립트</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch09/1.systemd/">9.1 systemd I</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch09/2.systemdu/">9.2 systemd II</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch09/3.crontab/">9.3 crontab</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">쉘프로그램(Bash)</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">4. 함수</li>
+      <li class="breadcrumb-item active">4.3 반환값II</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="_1"><strong><code>$()</code> 안에서 함수 실행해야 하는 이유</strong></h1>
+<p><code>total=$(sum $1 $2)</code> 와 같이 <strong>함수의 반환값을 변수에 저장하려면 <code>$()</code> 안에서 실행해야 함</strong>.  </p>
+<hr />
+<h3 id="1"><strong>1. <code>$()</code> 없이 실행할 경우</strong></h3>
+<h4 id="_2"><strong>예제</strong></h4>
+<div class="highlight"><pre><span></span><code><span class="ch">#!/bin/bash</span>
+
+<span class="c1"># 두 수의 합을 계산하는 함수</span>
+sum<span class="o">()</span><span class="w"> </span><span class="o">{</span>
+<span class="w">    </span><span class="nv">result</span><span class="o">=</span><span class="k">$((</span><span class="w"> </span><span class="nv">$1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nv">$2</span><span class="w"> </span><span class="k">))</span><span class="w">  </span><span class="c1"># 계산 수행</span>
+<span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="nv">$result</span><span class="w">           </span><span class="c1"># 결과 출력</span>
+<span class="o">}</span>
+
+<span class="c1"># 함수 호출 (잘못된 방법)</span>
+sum<span class="w"> </span><span class="m">10</span><span class="w"> </span><span class="m">20</span>
+<span class="nv">total</span><span class="o">=</span><span class="nv">$result</span><span class="w">  </span><span class="c1"># sum 함수 내부의 result 변수를 사용하려고 함</span>
+
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;두 숫자의 합: </span><span class="nv">$total</span><span class="s2">&quot;</span>
+</code></pre></div>
+<h4 id="_3"><strong>실행 결과</strong></h4>
+<div class="highlight"><pre><span></span><code>30
+두 숫자의 합: 
+</code></pre></div>
+<h5 id="_4"><strong>❌ 잘못된 이유</strong></h5>
+<ul>
+<li><code>sum 10 20</code>이 실행되었을 때 <code>result=30</code>이지만, 이 값은 함수 내부에서만 존재  </li>
+<li><code>total=$result</code>를 통해 값을 저장하려 했지만, **result는 함수 내에서만 정의된 변수**이므로 <code>total</code>이 비어 있음  </li>
+</ul>
+<hr />
+<h3 id="2"><strong>2. <code>$()</code>를 사용하여 함수 실행 (올바른 방법)</strong></h3>
+<h4 id="_5"><strong>예제</strong></h4>
+<div class="highlight"><pre><span></span><code><span class="ch">#!/bin/bash</span>
+
+<span class="c1"># 두 수의 합을 계산하는 함수</span>
+sum<span class="o">()</span><span class="w"> </span><span class="o">{</span>
+<span class="w">    </span><span class="nv">result</span><span class="o">=</span><span class="k">$((</span><span class="w"> </span><span class="nv">$1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nv">$2</span><span class="w"> </span><span class="k">))</span><span class="w">  </span><span class="c1"># 계산 수행</span>
+<span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="nv">$result</span><span class="w">           </span><span class="c1"># 결과 출력</span>
+<span class="o">}</span>
+
+<span class="c1"># 함수 호출 (올바른 방법)</span>
+<span class="nv">total</span><span class="o">=</span><span class="k">$(</span>sum<span class="w"> </span><span class="m">10</span><span class="w"> </span><span class="m">20</span><span class="k">)</span><span class="w">  </span><span class="c1"># sum 함수의 출력을 total에 저장</span>
+
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;두 숫자의 합: </span><span class="nv">$total</span><span class="s2">&quot;</span>
+</code></pre></div>
+<h4 id="_6"><strong>실행 결과</strong></h4>
+<div class="highlight"><pre><span></span><code>두 숫자의 합: 30
+</code></pre></div>
+<h5 id="_7"><strong>✅ 올바른 이유</strong></h5>
+<ul>
+<li><code>$()</code>를 사용하면 <strong><code>sum</code> 함수의 <code>echo</code> 결과(30)를 <code>total</code> 변수에 저장</strong>  </li>
+<li>즉, <code>sum 10 20</code>이 실행되면서 <code>echo 30</code>이 출력되고, <code>$()</code>가 이를 변수에 저장  </li>
+</ul>
+<hr />
+<h3 id="3-backticks-vs"><strong>3. <code>backticks (\``) vs</code>$()` 차이</strong></h3>
+<p>쉘에서는 <code>$()</code> 대신 <strong>백틱(<code>`</code>)을 사용할 수도 있음</strong>.<br />
+하지만 <code>$()</code> 사용이 **더 가독성이 좋고 중첩 사용 가능**하기 때문에 권장됨.  </p>
+<div class="highlight"><pre><span></span><code><span class="nv">total</span><span class="o">=</span><span class="sb">`</span>sum<span class="w"> </span><span class="m">10</span><span class="w"> </span><span class="m">20</span><span class="sb">`</span><span class="w">  </span><span class="c1"># 백틱 사용 가능하지만, `$()`가 더 명확함</span>
+</code></pre></div>
+<h5 id="_8"><strong><code>$()</code>와 백틱(``) 차이 예제</strong></h5>
+<div class="highlight"><pre><span></span><code><span class="nb">echo</span><span class="w"> </span><span class="k">$(</span><span class="nb">echo</span><span class="w"> </span><span class="k">$(</span>date<span class="k">))</span><span class="w">  </span><span class="c1"># 중첩 가능</span>
+<span class="nb">echo</span><span class="w"> </span><span class="sb">`</span><span class="nb">echo</span><span class="w"> </span><span class="se">\`</span>date<span class="se">\`</span><span class="sb">`</span><span class="w">  </span><span class="c1"># 백틱 사용 시 복잡함</span>
+</code></pre></div>
+<hr />
+<h3 id="4-return"><strong>4. <code>return</code>을 사용한 함수는 <code>$()</code>로 값을 받을 수 없는 이유</strong></h3>
+<p>쉘 스크립트에서 <strong><code>return</code>은 함수의 종료 상태 코드(0~255)만 반환 가능</strong>.<br />
+따라서, <code>return</code>을 사용한 함수의 값을 <code>$()</code>로 받을 수 없음.  </p>
+<h4 id="return"><strong>잘못된 예제 (<code>return</code> 사용)</strong></h4>
+<div class="highlight"><pre><span></span><code>sum<span class="o">()</span><span class="w"> </span><span class="o">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="k">$((</span><span class="w"> </span><span class="nv">$1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nv">$2</span><span class="w"> </span><span class="k">))</span><span class="w">  </span><span class="c1"># return은 0~255까지만 가능</span>
+<span class="o">}</span>
+
+<span class="nv">total</span><span class="o">=</span><span class="k">$(</span>sum<span class="w"> </span><span class="m">10</span><span class="w"> </span><span class="m">20</span><span class="k">)</span><span class="w">  </span><span class="c1"># 잘못된 방식</span>
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;합계: </span><span class="nv">$total</span><span class="s2">&quot;</span>
+</code></pre></div>
+<h4 id="echo"><strong>올바른 예제 (<code>echo</code> 사용)</strong></h4>
+<div class="highlight"><pre><span></span><code>sum<span class="o">()</span><span class="w"> </span><span class="o">{</span>
+<span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="k">$((</span><span class="w"> </span><span class="nv">$1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nv">$2</span><span class="w"> </span><span class="k">))</span><span class="w">  </span><span class="c1"># echo로 결과 반환</span>
+<span class="o">}</span>
+
+<span class="nv">total</span><span class="o">=</span><span class="k">$(</span>sum<span class="w"> </span><span class="m">10</span><span class="w"> </span><span class="m">20</span><span class="k">)</span><span class="w">  </span><span class="c1"># 올바른 방식</span>
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;합계: </span><span class="nv">$total</span><span class="s2">&quot;</span>
+</code></pre></div>
+<hr />
+<h3 id="5"><strong>5. 정리</strong></h3>
+<ul>
+<li><strong><code>$()</code> 안에서 함수 실행해야 <code>echo</code>의 출력값을 변수에 저장 가능`</strong></li>
+<li><strong><code>return</code>은 함수 종료 상태 코드(0~255)만 반환하므로 <code>$()</code>와 함께 사용 불가</strong></li>
+<li><strong>백틱(<code>`)도 가능하지만</code>$()`가 더 가독성이 좋고 중첩 사용 가능</strong></li>
+<li><strong>값을 반환하려면 <code>return</code> 대신 <code>echo</code>를 사용해야 함</strong>  </li>
+</ul>
+<p>쉘 스크립트에서 <strong><code>$()</code>를 활용하면 함수 결과를 변수에 저장하고 다양한 연산에 활용 가능</strong> 🚀</p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../2.return/" class="btn btn-neutral float-left" title="4.2 반환값I"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../../ch05/1.stdio/" class="btn btn-neutral float-right" title="5.1 표준입출력">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../2.return/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../../ch05/1.stdio/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

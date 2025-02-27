@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://rco123.github.io/man_shell_program/ch06/1.find/" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>6.1 find - 쉘프로그램(Bash)</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../../css/style.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "6.1 find";
+        var mkdocs_page_input_path = "ch06\\1.find.md";
+        var mkdocs_page_url = "/man_shell_program/ch06/1.find/";
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> 쉘프로그램(Bash)
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../..">Home</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">1. 시작하기</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch01/1.bash/">1.1 개요</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch01/2.cmd/">1.2 cmd</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch01/3.app/">1.3 app</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">2. 변수</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch02/1.var/">2.1 변수만들기</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch02/2.var_ext/">2.2 변수확장</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch02/3.math/">2.3 숫자연산</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch02/4.exam/">2.4 실습</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch02/5.array/">2.5 배열</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">3. 문자열</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch03/1.string/">3.1 문자열</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch03/2.char/">3.2 특수문자</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch03/3.exam/">3.3 실습</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">4. 함수</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch04/1.func/">4.1 함수만들기</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch04/2.return/">4.2 반환값I</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch04/3.return_ex/">4.3 반환값II</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">5. 명령어</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch05/1.stdio/">5.1 표준입출력</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch05/2.run/">5.2 명령실행</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch05/3.pipe/">5.3 파이프</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">6. 명령어II</span></p>
+              <ul class="current">
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">6.1 find</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#1-find">1. find란?</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#2">2. 기본 문법</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#3-find">3. find의 주요 옵션</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#4-find">4. find 명령어 실습 예제</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#1-name">1) 특정 파일 검색 (-name)</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#2-name">2) 특정 확장자를 가진 파일 검색 (-name "*.확장자")</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#3-size">3) 특정 크기 이상의 파일 검색 (-size)</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#4-mtime">4) 특정 날짜 이후 수정된 파일 검색 (-mtime)</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#5-user">5) 특정 사용자가 소유한 파일 검색 (-user)</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#6-perm">6) 특정 권한을 가진 파일 검색 (-perm)</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#7-empty">7) 빈 파일 및 디렉토리 검색 (-empty)</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#5-find-exec">5. find와 exec를 사용하여 검색 결과에 작업 수행</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#1-exec-rm">1) 검색된 파일 삭제 (-exec rm)</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#2-exec-mv">2) 검색된 파일을 다른 디렉토리로 이동 (-exec mv)</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#3-exec-ls-l">3) 검색된 파일의 상세 정보 출력 (-exec ls -l)</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#6-find-xargs">6. find와 xargs를 활용한 대량 처리</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#1-xargs-rm">1) 검색된 파일을 한 번에 삭제 (xargs rm)</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#2-xargs-tar">2) 검색된 파일을 압축 (xargs tar)</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#7-find-delete">7. find와 -delete를 사용한 파일 삭제</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#1">1) 특정 확장자의 파일 삭제</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#2_1">2) 특정 크기 이상의 파일 삭제</a>
+    </li>
+        </ul>
+    </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../2.grep/">6.2 grep</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../3.grep_ext/">6.3 grep 정규식</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../4.rm/">6.4 rm</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../5.rm_ext/">6.5 rm 제외</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../6.ps/">6.6 ps 제외</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../7.kill/">6.7 kill 제외</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">7. 제어문</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch07/1.control/">7.1 제어문</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch07/2.condi/">6.2 조건연산자</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">8. 환경변수</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch08/1.login/">7.1 로그인</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch08/2.bashrc/">6.2 bashrc</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">9. 스크립트</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch09/1.systemd/">9.1 systemd I</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch09/2.systemdu/">9.2 systemd II</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch09/3.crontab/">9.3 crontab</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">쉘프로그램(Bash)</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">6. 명령어II</li>
+      <li class="breadcrumb-item active">6.1 find</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h2 id="find"><strong><code>find</code> 명령어 개요</strong></h2>
+<h3 id="1-find"><strong>1. <code>find</code>란?</strong></h3>
+<ul>
+<li><strong>파일 및 디렉토리를 검색하는 명령어</strong>  </li>
+<li>지정한 경로에서 특정 조건(이름, 크기, 수정 시간 등)에 맞는 파일을 찾을 수 있음  </li>
+<li>검색 결과를 기반으로 **삭제, 복사, 이동 등 다양한 작업을 자동화**할 수 있음  </li>
+</ul>
+<hr />
+<h3 id="2"><strong>2. 기본 문법</strong></h3>
+<p><div class="highlight"><pre><span></span><code>find<span class="w"> </span><span class="o">[</span>검색할<span class="w"> </span>경로<span class="o">]</span><span class="w"> </span><span class="o">[</span>옵션<span class="o">]</span><span class="w"> </span><span class="o">[</span>검색<span class="w"> </span>조건<span class="o">]</span><span class="w"> </span><span class="o">[</span>실행할<span class="w"> </span>작업<span class="o">]</span>
+</code></pre></div>
+- <code>[검색할 경로]</code> → 검색을 수행할 디렉토리 (<code>/</code>, <code>.</code> 등)<br />
+- <code>[옵션]</code> → 검색 조건 설정 (<code>-name</code>, <code>-size</code>, <code>-type</code> 등)<br />
+- <code>[검색 조건]</code> → 특정 파일명, 크기, 날짜 등을 지정<br />
+- <code>[실행할 작업]</code> → 검색된 파일에 대해 수행할 작업 (<code>-exec</code>, <code>-delete</code> 등)  </p>
+<hr />
+<h3 id="3-find"><strong>3. <code>find</code>의 주요 옵션</strong></h3>
+<table>
+<thead>
+<tr>
+<th>옵션</th>
+<th>설명</th>
+<th>예제</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>-name</code></td>
+<td>특정 파일 이름 검색</td>
+<td><code>find . -name "test.txt"</code></td>
+</tr>
+<tr>
+<td><code>-iname</code></td>
+<td>대소문자 무시하고 검색</td>
+<td><code>find . -iname "TEST.txt"</code></td>
+</tr>
+<tr>
+<td><code>-type</code></td>
+<td>파일 유형 지정 (<code>f</code>: 파일, <code>d</code>: 디렉토리)</td>
+<td><code>find . -type f -name "*.sh"</code></td>
+</tr>
+<tr>
+<td><code>-size</code></td>
+<td>파일 크기로 검색 (<code>+</code>: 초과, <code>-</code>: 미만)</td>
+<td><code>find . -size +10M</code> (10MB 초과)</td>
+</tr>
+<tr>
+<td><code>-mtime</code></td>
+<td>수정된 지 N일 지난 파일 검색</td>
+<td><code>find . -mtime -7</code> (7일 이내 수정)</td>
+</tr>
+<tr>
+<td><code>-atime</code></td>
+<td>마지막으로 접근한 지 N일 지난 파일 검색</td>
+<td><code>find . -atime +30</code> (30일 이상 미접근)</td>
+</tr>
+<tr>
+<td><code>-ctime</code></td>
+<td>파일의 속성이 변경된 지 N일 지난 파일 검색</td>
+<td><code>find . -ctime -3</code> (3일 이내 변경)</td>
+</tr>
+<tr>
+<td><code>-perm</code></td>
+<td>파일의 권한을 기준으로 검색</td>
+<td><code>find . -perm 644</code></td>
+</tr>
+<tr>
+<td><code>-user</code></td>
+<td>특정 사용자가 소유한 파일 검색</td>
+<td><code>find . -user root</code></td>
+</tr>
+<tr>
+<td><code>-group</code></td>
+<td>특정 그룹이 소유한 파일 검색</td>
+<td><code>find . -group staff</code></td>
+</tr>
+<tr>
+<td><code>-empty</code></td>
+<td>빈 파일 또는 빈 디렉토리 검색</td>
+<td><code>find . -type f -empty</code></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="4-find"><strong>4. <code>find</code> 명령어 실습 예제</strong></h3>
+<h4 id="1-name"><strong>1) 특정 파일 검색 (<code>-name</code>)</strong></h4>
+<p><div class="highlight"><pre><span></span><code>find<span class="w"> </span>/home/user<span class="w"> </span>-name<span class="w"> </span><span class="s2">&quot;test.txt&quot;</span>
+</code></pre></div>
+- <code>/home/user</code> 디렉토리에서 <code>"test.txt"</code> 파일을 찾음  </p>
+<hr />
+<h4 id="2-name"><strong>2) 특정 확장자를 가진 파일 검색 (<code>-name "*.확장자"</code>)</strong></h4>
+<p><div class="highlight"><pre><span></span><code>find<span class="w"> </span>.<span class="w"> </span>-name<span class="w"> </span><span class="s2">&quot;*.sh&quot;</span>
+</code></pre></div>
+- 현재 디렉토리(<code>.</code>)에서 <strong>모든 <code>.sh</code> 파일</strong> 검색  </p>
+<hr />
+<h4 id="3-size"><strong>3) 특정 크기 이상의 파일 검색 (<code>-size</code>)</strong></h4>
+<p><div class="highlight"><pre><span></span><code>find<span class="w"> </span>/var/log<span class="w"> </span>-size<span class="w"> </span>+100M
+</code></pre></div>
+- <code>/var/log</code> 디렉토리에서 <strong>100MB 초과 파일</strong> 검색  </p>
+<hr />
+<h4 id="4-mtime"><strong>4) 특정 날짜 이후 수정된 파일 검색 (<code>-mtime</code>)</strong></h4>
+<p><div class="highlight"><pre><span></span><code>find<span class="w"> </span>/home/user<span class="w"> </span>-mtime<span class="w"> </span>-7
+</code></pre></div>
+- <code>/home/user</code> 디렉토리에서 <strong>최근 7일 이내 수정된 파일</strong> 검색  </p>
+<hr />
+<h4 id="5-user"><strong>5) 특정 사용자가 소유한 파일 검색 (<code>-user</code>)</strong></h4>
+<p><div class="highlight"><pre><span></span><code>find<span class="w"> </span>/<span class="w"> </span>-user<span class="w"> </span>root
+</code></pre></div>
+- 루트(<code>/</code>) 디렉토리에서 <strong>root 사용자가 소유한 파일</strong> 검색  </p>
+<hr />
+<h4 id="6-perm"><strong>6) 특정 권한을 가진 파일 검색 (<code>-perm</code>)</strong></h4>
+<p><div class="highlight"><pre><span></span><code>find<span class="w"> </span>/home/user<span class="w"> </span>-type<span class="w"> </span>f<span class="w"> </span>-perm<span class="w"> </span><span class="m">644</span>
+</code></pre></div>
+- <code>/home/user</code> 디렉토리에서 <strong>644(읽기/쓰기/읽기) 권한을 가진 파일</strong> 검색  </p>
+<hr />
+<h4 id="7-empty"><strong>7) 빈 파일 및 디렉토리 검색 (<code>-empty</code>)</strong></h4>
+<p><div class="highlight"><pre><span></span><code>find<span class="w"> </span>.<span class="w"> </span>-type<span class="w"> </span>f<span class="w"> </span>-empty
+</code></pre></div>
+- 현재 디렉토리에서 <strong>빈 파일</strong> 검색  </p>
+<p><div class="highlight"><pre><span></span><code>find<span class="w"> </span>.<span class="w"> </span>-type<span class="w"> </span>d<span class="w"> </span>-empty
+</code></pre></div>
+- 현재 디렉토리에서 <strong>빈 디렉토리</strong> 검색  </p>
+<hr />
+<h3 id="5-find-exec"><strong>5. <code>find</code>와 <code>exec</code>를 사용하여 검색 결과에 작업 수행</strong></h3>
+<p><code>find</code>는 <code>-exec</code> 옵션을 사용하여 <strong>검색된 파일에 특정 명령을 실행할 수 있음</strong>  </p>
+<h4 id="1-exec-rm"><strong>1) 검색된 파일 삭제 (<code>-exec rm</code>)</strong></h4>
+<p><div class="highlight"><pre><span></span><code>find<span class="w"> </span>/tmp<span class="w"> </span>-type<span class="w"> </span>f<span class="w"> </span>-name<span class="w"> </span><span class="s2">&quot;*.log&quot;</span><span class="w"> </span>-exec<span class="w"> </span>rm<span class="w"> </span><span class="o">{}</span><span class="w"> </span><span class="se">\;</span>
+</code></pre></div>
+- <code>/tmp</code> 디렉토리에서 <strong><code>.log</code> 파일을 찾은 후 삭제</strong>  </p>
+<h4 id="2-exec-mv"><strong>2) 검색된 파일을 다른 디렉토리로 이동 (<code>-exec mv</code>)</strong></h4>
+<p><div class="highlight"><pre><span></span><code>find<span class="w"> </span>.<span class="w"> </span>-type<span class="w"> </span>f<span class="w"> </span>-name<span class="w"> </span><span class="s2">&quot;*.txt&quot;</span><span class="w"> </span>-exec<span class="w"> </span>mv<span class="w"> </span><span class="o">{}</span><span class="w"> </span>/backup/<span class="w"> </span><span class="se">\;</span>
+</code></pre></div>
+- 현재 디렉토리에서 <strong>모든 <code>.txt</code> 파일을 <code>/backup/</code>으로 이동</strong>  </p>
+<h4 id="3-exec-ls-l"><strong>3) 검색된 파일의 상세 정보 출력 (<code>-exec ls -l</code>)</strong></h4>
+<p><div class="highlight"><pre><span></span><code>find<span class="w"> </span>.<span class="w"> </span>-type<span class="w"> </span>f<span class="w"> </span>-name<span class="w"> </span><span class="s2">&quot;*.sh&quot;</span><span class="w"> </span>-exec<span class="w"> </span>ls<span class="w"> </span>-l<span class="w"> </span><span class="o">{}</span><span class="w"> </span><span class="se">\;</span>
+</code></pre></div>
+- 현재 디렉토리에서 <strong>모든 <code>.sh</code> 파일을 찾아 상세 정보 출력</strong>  </p>
+<hr />
+<h3 id="6-find-xargs"><strong>6. <code>find</code>와 <code>xargs</code>를 활용한 대량 처리</strong></h3>
+<p><code>xargs</code>를 사용하면 <code>find</code> 결과를 <strong>효율적으로 명령어에 전달</strong> 가능  </p>
+<h4 id="1-xargs-rm"><strong>1) 검색된 파일을 한 번에 삭제 (<code>xargs rm</code>)</strong></h4>
+<p><div class="highlight"><pre><span></span><code>find<span class="w"> </span>.<span class="w"> </span>-type<span class="w"> </span>f<span class="w"> </span>-name<span class="w"> </span><span class="s2">&quot;*.tmp&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>xargs<span class="w"> </span>rm
+</code></pre></div>
+- 현재 디렉토리에서 <strong><code>.tmp</code> 파일을 한 번에 삭제</strong>  </p>
+<h4 id="2-xargs-tar"><strong>2) 검색된 파일을 압축 (<code>xargs tar</code>)</strong></h4>
+<p><div class="highlight"><pre><span></span><code>find<span class="w"> </span>/var/log<span class="w"> </span>-type<span class="w"> </span>f<span class="w"> </span>-name<span class="w"> </span><span class="s2">&quot;*.log&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>xargs<span class="w"> </span>tar<span class="w"> </span>-czf<span class="w"> </span>logs.tar.gz
+</code></pre></div>
+- <code>/var/log</code>의 모든 <code>.log</code> 파일을 <strong>logs.tar.gz로 압축</strong>  </p>
+<hr />
+<h3 id="7-find-delete"><strong>7. <code>find</code>와 <code>-delete</code>를 사용한 파일 삭제</strong></h3>
+<h4 id="1"><strong>1) 특정 확장자의 파일 삭제</strong></h4>
+<p><div class="highlight"><pre><span></span><code>find<span class="w"> </span>.<span class="w"> </span>-type<span class="w"> </span>f<span class="w"> </span>-name<span class="w"> </span><span class="s2">&quot;*.bak&quot;</span><span class="w"> </span>-delete
+</code></pre></div>
+- 현재 디렉토리에서 <strong><code>.bak</code> 파일 삭제</strong>  </p>
+<h4 id="2_1"><strong>2) 특정 크기 이상의 파일 삭제</strong></h4>
+<p><div class="highlight"><pre><span></span><code>find<span class="w"> </span>/var/log<span class="w"> </span>-type<span class="w"> </span>f<span class="w"> </span>-size<span class="w"> </span>+500M<span class="w"> </span>-delete
+</code></pre></div>
+- <code>/var/log</code>에서 <strong>500MB 초과 파일 삭제</strong>  </p>
+<hr />
+<h2 id="_1"><strong>정리</strong></h2>
+<ul>
+<li><strong><code>find</code>는 파일 및 디렉토리를 검색하는 강력한 명령어</strong>  </li>
+<li><strong>이름, 크기, 날짜, 소유자, 권한 등 다양한 조건으로 검색 가능</strong>  </li>
+<li><strong><code>-exec</code> 또는 <code>xargs</code>를 사용하면 검색된 파일에 대해 작업 수행 가능</strong>  </li>
+<li><strong><code>-delete</code> 옵션을 사용하여 특정 파일을 빠르게 삭제 가능</strong>  </li>
+</ul>
+<p><code>find</code> 명령어를 활용하면 <strong>파일 검색, 정리, 자동화 작업을 효율적으로 수행할 수 있음</strong> 🚀</p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../../ch05/3.pipe/" class="btn btn-neutral float-left" title="5.3 파이프"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../2.grep/" class="btn btn-neutral float-right" title="6.2 grep">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../../ch05/3.pipe/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../2.grep/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

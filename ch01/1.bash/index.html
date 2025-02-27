@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://rco123.github.io/man_shell_program/ch01/1.bash/" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>1.1 개요 - 쉘프로그램(Bash)</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../../css/style.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "1.1 \uac1c\uc694";
+        var mkdocs_page_input_path = "ch01\\1.bash.md";
+        var mkdocs_page_url = "/man_shell_program/ch01/1.bash/";
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> 쉘프로그램(Bash)
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../..">Home</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">1. 시작하기</span></p>
+              <ul class="current">
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">1.1 개요</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#1-shell">1. 쉘(Shell)이란?</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#2-shell-scripting">2. 쉘 프로그래밍(Shell Scripting)의 역할</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#3">3. 쉘 스크립트 예제 (파일 자동 백업)</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#4">4. 쉘 프로그래밍의 필요성</a>
+    </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../2.cmd/">1.2 cmd</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../3.app/">1.3 app</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">2. 변수</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch02/1.var/">2.1 변수만들기</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch02/2.var_ext/">2.2 변수확장</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch02/3.math/">2.3 숫자연산</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch02/4.exam/">2.4 실습</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch02/5.array/">2.5 배열</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">3. 문자열</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch03/1.string/">3.1 문자열</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch03/2.char/">3.2 특수문자</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch03/3.exam/">3.3 실습</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">4. 함수</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch04/1.func/">4.1 함수만들기</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch04/2.return/">4.2 반환값I</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch04/3.return_ex/">4.3 반환값II</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">5. 명령어</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch05/1.stdio/">5.1 표준입출력</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch05/2.run/">5.2 명령실행</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch05/3.pipe/">5.3 파이프</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">6. 명령어II</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch06/1.find/">6.1 find</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch06/2.grep/">6.2 grep</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch06/3.grep_ext/">6.3 grep 정규식</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch06/4.rm/">6.4 rm</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch06/5.rm_ext/">6.5 rm 제외</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch06/6.ps/">6.6 ps 제외</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch06/7.kill/">6.7 kill 제외</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">7. 제어문</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch07/1.control/">7.1 제어문</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch07/2.condi/">6.2 조건연산자</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">8. 환경변수</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch08/1.login/">7.1 로그인</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch08/2.bashrc/">6.2 bashrc</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">9. 스크립트</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch09/1.systemd/">9.1 systemd I</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch09/2.systemdu/">9.2 systemd II</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch09/3.crontab/">9.3 crontab</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">쉘프로그램(Bash)</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">1. 시작하기</li>
+      <li class="breadcrumb-item active">1.1 개요</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h2 id="shell"><strong>쉘(Shell)과 쉘 프로그래밍의 역할</strong></h2>
+<h3 id="1-shell"><strong>1. 쉘(Shell)이란?</strong></h3>
+<ul>
+<li>사용자가 입력한 명령을 해석하고 운영체제(커널)에 전달하는 인터페이스  </li>
+<li>리눅스 및 유닉스 환경에서 터미널을 통해 명령어 실행 지원  </li>
+<li>주요 쉘 종류  <ul>
+<li><strong>Bash (Bourne Again Shell)</strong>: 가장 널리 사용되는 쉘  </li>
+<li><strong>Zsh (Z Shell)</strong>: 자동 완성 기능이 강력한 쉘  </li>
+<li><strong>Fish (Friendly Interactive Shell)</strong>: 직관적인 사용이 가능한 쉘  </li>
+<li><strong>Sh (Bourne Shell)</strong>: 기본적인 UNIX 쉘  </li>
+</ul>
+</li>
+</ul>
+<h3 id="2-shell-scripting"><strong>2. 쉘 프로그래밍(Shell Scripting)의 역할</strong></h3>
+<ul>
+<li>쉘 명령어를 조합하여 자동화 스크립트(Shell Script) 작성  </li>
+<li>주요 역할  <ul>
+<li>반복적인 작업 자동화 (파일 백업, 로그 정리, 데이터 처리)  </li>
+<li>시스템 관리 및 운영 (프로세스 및 네트워크 관리, 사용자 관리)  </li>
+<li>배치 작업 실행 (<code>cron</code>을 활용한 예약 작업 설정)  </li>
+<li>소프트웨어 빌드 및 배포 자동화 (DevOps 환경에서 활용)  </li>
+<li>네트워크 및 서버 관리 (SSH 원격 실행, 모니터링 스크립트 작성)  </li>
+</ul>
+</li>
+</ul>
+<h3 id="3"><strong>3. 쉘 스크립트 예제 (파일 자동 백업)</strong></h3>
+<p><div class="highlight"><pre><span></span><code><span class="ch">#!/bin/bash</span>
+<span class="c1"># 백업 스크립트</span>
+
+<span class="nv">SOURCE_DIR</span><span class="o">=</span><span class="s2">&quot;/home/user/documents&quot;</span>
+<span class="nv">BACKUP_DIR</span><span class="o">=</span><span class="s2">&quot;/home/user/backup&quot;</span>
+
+mkdir<span class="w"> </span>-p<span class="w"> </span><span class="nv">$BACKUP_DIR</span>
+cp<span class="w"> </span>-r<span class="w"> </span><span class="nv">$SOURCE_DIR</span>/*<span class="w"> </span><span class="nv">$BACKUP_DIR</span>/
+
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;백업 완료&quot;</span>
+</code></pre></div>
+- 특정 디렉토리의 파일을 자동으로 백업하는 기능<br />
+- <code>mkdir -p</code>로 백업 디렉토리가 없을 경우 자동 생성<br />
+- <code>cp -r</code>을 이용해 원본 디렉토리의 모든 파일 복사<br />
+- 실행 결과로 "백업 완료" 메시지 출력  </p>
+<h3 id="4"><strong>4. 쉘 프로그래밍의 필요성</strong></h3>
+<ul>
+<li>단순 반복 작업을 자동화하여 생산성 향상  </li>
+<li>시스템 관리 및 유지보수의 효율성을 높임  </li>
+<li>운영 환경에서 발생하는 다양한 작업을 간편하게 처리  </li>
+<li>DevOps 및 클라우드 환경에서 필수적인 자동화 기술  </li>
+<li>리눅스 기반 서버 및 시스템 관리자의 필수 역량</li>
+</ul>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../.." class="btn btn-neutral float-left" title="Home"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../2.cmd/" class="btn btn-neutral float-right" title="1.2 cmd">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../.." style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../2.cmd/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

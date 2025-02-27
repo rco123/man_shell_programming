@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://rco123.github.io/man_shell_program/ch06/7.kill/" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>6.7 kill 제외 - 쉘프로그램(Bash)</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../../css/style.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "6.7 kill \uc81c\uc678";
+        var mkdocs_page_input_path = "ch06\\7.kill.md";
+        var mkdocs_page_url = "/man_shell_program/ch06/7.kill/";
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> 쉘프로그램(Bash)
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../..">Home</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">1. 시작하기</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch01/1.bash/">1.1 개요</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch01/2.cmd/">1.2 cmd</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch01/3.app/">1.3 app</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">2. 변수</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch02/1.var/">2.1 변수만들기</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch02/2.var_ext/">2.2 변수확장</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch02/3.math/">2.3 숫자연산</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch02/4.exam/">2.4 실습</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch02/5.array/">2.5 배열</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">3. 문자열</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch03/1.string/">3.1 문자열</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch03/2.char/">3.2 특수문자</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch03/3.exam/">3.3 실습</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">4. 함수</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch04/1.func/">4.1 함수만들기</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch04/2.return/">4.2 반환값I</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch04/3.return_ex/">4.3 반환값II</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">5. 명령어</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch05/1.stdio/">5.1 표준입출력</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch05/2.run/">5.2 명령실행</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch05/3.pipe/">5.3 파이프</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">6. 명령어II</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../1.find/">6.1 find</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../2.grep/">6.2 grep</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../3.grep_ext/">6.3 grep 정규식</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../4.rm/">6.4 rm</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../5.rm_ext/">6.5 rm 제외</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../6.ps/">6.6 ps 제외</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">6.7 kill 제외</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#1">1. 기본 개념</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#2">2. 주요 시그널 종류</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#3-kill">3. kill 명령어 사용법</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#4">4. 추가 옵션 및 참고 사항</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_1">결론</a>
+    </li>
+    </ul>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">7. 제어문</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch07/1.control/">7.1 제어문</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch07/2.condi/">6.2 조건연산자</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">8. 환경변수</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch08/1.login/">7.1 로그인</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch08/2.bashrc/">6.2 bashrc</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">9. 스크립트</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch09/1.systemd/">9.1 systemd I</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch09/2.systemdu/">9.2 systemd II</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch09/3.crontab/">9.3 crontab</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">쉘프로그램(Bash)</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">6. 명령어II</li>
+      <li class="breadcrumb-item active">6.7 kill 제외</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="kill">KILL</h1>
+<p>kill 명령어는 유닉스/리눅스 시스템에서 프로세스에게 시그널을 보내어, 해당 프로세스의 동작을 제어하거나 종료하도록 하는 데 사용됩니다. 단순히 "프로세스를 죽인다"라는 의미뿐 아니라, 다양한 시그널을 통해 프로세스에 여러 동작을 요청할 수 있습니다.</p>
+<hr />
+<h2 id="1">1. 기본 개념</h2>
+<ul>
+<li>
+<p><strong>프로세스에 시그널 보내기:</strong><br />
+  kill 명령어는 지정된 프로세스 ID(PID)나 프로세스 그룹에 시그널을 전송합니다. 시그널은 프로세스에게 어떤 작업을 하거나 종료하도록 요청하는 메시지입니다.</p>
+</li>
+<li>
+<p><strong>기본 시그널:</strong><br />
+  아무런 옵션 없이 kill 명령어를 실행하면 기본적으로 SIGTERM(시그널 15)을 전송합니다. SIGTERM은 "정상 종료"를 요청하는 시그널로, 프로세스가 이를 처리하여 정리(cleanup) 후 종료될 수 있도록 합니다.</p>
+</li>
+</ul>
+<hr />
+<h2 id="2">2. 주요 시그널 종류</h2>
+<ul>
+<li>
+<p><strong>SIGTERM (15):</strong><br />
+  정상적인 종료를 요청합니다. 프로세스가 이 시그널을 받아들이면, 리소스를 정리하고 종료할 기회를 갖습니다.</p>
+</li>
+<li>
+<p><strong>SIGKILL (9):</strong><br />
+  강제 종료를 위한 시그널입니다. 이 시그널은 프로세스가 캡처하거나 무시할 수 없으므로, 즉시 종료됩니다. 단, 정리 작업 없이 바로 종료되므로 데이터 손실이 발생할 수 있습니다.</p>
+</li>
+<li>
+<p><strong>SIGINT (2):</strong><br />
+  인터럽트 시그널로, 보통 Ctrl+C를 눌렀을 때 발생합니다.</p>
+</li>
+<li>
+<p><strong>SIGHUP (1):</strong><br />
+  "hangup" 시그널로, 터미널 연결이 끊어졌을 때 보내지며, 데몬 프로세스는 이 시그널을 재설정(reload) 용도로 사용하기도 합니다.</p>
+</li>
+<li>
+<p><strong>그 외:</strong><br />
+  SIGSTOP, SIGCONT 등 다양한 시그널이 있으며, 각각 프로세스의 일시정지, 재개 등 다양한 동작을 제어할 수 있습니다.</p>
+</li>
+</ul>
+<hr />
+<h2 id="3-kill">3. kill 명령어 사용법</h2>
+<p>기본 사용법은 다음과 같습니다.</p>
+<div class="highlight"><pre><span></span><code><span class="nb">kill</span><span class="w"> </span><span class="o">[</span>옵션<span class="o">]</span><span class="w"> </span>PID...
+</code></pre></div>
+<p>예시:</p>
+<ul>
+<li>
+<p><strong>기본 사용 (SIGTERM 전송):</strong>
+  <div class="highlight"><pre><span></span><code><span class="nb">kill</span><span class="w"> </span><span class="m">1234</span>
+</code></pre></div>
+  PID 1234인 프로세스에 SIGTERM(15)을 전송합니다.</p>
+</li>
+<li>
+<p><strong>특정 시그널 전송 (예: SIGKILL):</strong>
+  <div class="highlight"><pre><span></span><code><span class="nb">kill</span><span class="w"> </span>-9<span class="w"> </span><span class="m">1234</span>
+</code></pre></div>
+  또는
+  <div class="highlight"><pre><span></span><code><span class="nb">kill</span><span class="w"> </span>-s<span class="w"> </span>SIGKILL<span class="w"> </span><span class="m">1234</span>
+</code></pre></div>
+  PID 1234인 프로세스에 SIGKILL(9)을 전송하여 강제 종료합니다.</p>
+</li>
+<li>
+<p><strong>여러 프로세스에 시그널 전송:</strong>
+  <div class="highlight"><pre><span></span><code><span class="nb">kill</span><span class="w"> </span>-15<span class="w"> </span><span class="m">1234</span><span class="w"> </span><span class="m">2345</span><span class="w"> </span><span class="m">3456</span>
+</code></pre></div>
+  여러 PID에 SIGTERM을 전송합니다.</p>
+</li>
+<li>
+<p><strong>프로세스 그룹 전체에 시그널 보내기:</strong><br />
+  음수 PID를 사용하면 해당 프로세스 그룹 전체에 시그널이 전송됩니다. 예를 들어, 그룹 리더의 PID가 1000인 경우:
+  <div class="highlight"><pre><span></span><code><span class="nb">kill</span><span class="w"> </span>-TERM<span class="w"> </span>-1000
+</code></pre></div>
+  이 명령은 프로세스 그룹 ID가 1000인 모든 프로세스에 SIGTERM을 전송합니다.</p>
+</li>
+</ul>
+<hr />
+<h2 id="4">4. 추가 옵션 및 참고 사항</h2>
+<ul>
+<li>
+<p><strong>-l 옵션:</strong><br />
+  kill -l 명령을 사용하면, 시스템에서 지원하는 시그널 목록을 확인할 수 있습니다.
+  <div class="highlight"><pre><span></span><code><span class="nb">kill</span><span class="w"> </span>-l
+</code></pre></div></p>
+</li>
+<li>
+<p><strong>시그널 무시 및 핸들링:</strong><br />
+  많은 프로세스는 SIGTERM 같은 시그널을 무시하거나, 종료 전에 특정 작업(예: 데이터 저장, 로그 기록)을 수행하도록 핸들러를 등록할 수 있습니다. 반면 SIGKILL은 무조건 종료되므로, 마지막 수단으로 사용됩니다.</p>
+</li>
+<li>
+<p><strong>사용 예:</strong><br />
+  프로세스가 응답하지 않을 때 먼저 SIGTERM으로 정상 종료를 요청하고, 응답이 없으면 SIGKILL을 사용하여 강제 종료하는 방식으로 작업할 수 있습니다.</p>
+</li>
+</ul>
+<hr />
+<h2 id="_1">결론</h2>
+<p>kill 명령어는 단순히 프로세스를 종료시키는 것 이상의 기능을 제공합니다. 다양한 시그널을 통해 프로세스의 동작을 세밀하게 제어할 수 있으며, 프로세스 그룹 전체에 시그널을 보내거나 특정 시그널을 선택적으로 전송할 수 있습니다. 시스템 관리 및 문제 해결 시 kill 명령어를 적절히 활용하면, 프로세스 관리에 큰 도움이 됩니다.</p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../6.ps/" class="btn btn-neutral float-left" title="6.6 ps 제외"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../../ch07/1.control/" class="btn btn-neutral float-right" title="7.1 제어문">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../6.ps/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../../ch07/1.control/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

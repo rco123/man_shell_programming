@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://rco123.github.io/man_shell_program/ch06/4.rm/" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>6.4 rm - 쉘프로그램(Bash)</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../../css/style.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "6.4 rm";
+        var mkdocs_page_input_path = "ch06\\4.rm.md";
+        var mkdocs_page_url = "/man_shell_program/ch06/4.rm/";
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> 쉘프로그램(Bash)
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../..">Home</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">1. 시작하기</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch01/1.bash/">1.1 개요</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch01/2.cmd/">1.2 cmd</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch01/3.app/">1.3 app</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">2. 변수</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch02/1.var/">2.1 변수만들기</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch02/2.var_ext/">2.2 변수확장</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch02/3.math/">2.3 숫자연산</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch02/4.exam/">2.4 실습</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch02/5.array/">2.5 배열</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">3. 문자열</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch03/1.string/">3.1 문자열</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch03/2.char/">3.2 특수문자</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch03/3.exam/">3.3 실습</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">4. 함수</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch04/1.func/">4.1 함수만들기</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch04/2.return/">4.2 반환값I</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch04/3.return_ex/">4.3 반환값II</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">5. 명령어</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch05/1.stdio/">5.1 표준입출력</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch05/2.run/">5.2 명령실행</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch05/3.pipe/">5.3 파이프</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">6. 명령어II</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../1.find/">6.1 find</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../2.grep/">6.2 grep</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../3.grep_ext/">6.3 grep 정규식</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">6.4 rm</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#1-rm">1. rm이란?</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#2-rm">2. rm 기본 문법</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#3-rm">3. rm 주요 옵션</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#4-rm">4. rm 사용 예제</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#1">1) 기본적인 파일 삭제</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#2-i">2) 삭제 확인 메시지를 표시하며 삭제 (-i)</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#_1">출력 예시</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#3">3) 여러 개의 파일 삭제</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#4">4) 특정 확장자의 모든 파일 삭제</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#5-r">5) 디렉토리와 하위 파일을 포함하여 삭제 (-r)</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#6-f">6) 강제 삭제 (-f)</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#7-v">7) 삭제되는 파일을 확인하면서 삭제 (-v)</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#_2">출력 예시</a>
+    </li>
+        </ul>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#5">5. 특정 파일을 제외하고 삭제하는 방법</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#1-find-rm">1) find와 rm을 조합하여 특정 파일 제외</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#_3">설명</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#2">2) 여러 개의 특정 파일 제외하고 삭제</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#_4">설명</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#3_1">3) 특정 확장자 제외하고 삭제</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#_5">설명</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#4-rm-grep">4) rm과 grep을 조합하여 특정 파일 제외</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#_6">설명</a>
+    </li>
+        </ul>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#6-rm">6. rm을 사용할 때 주의할 점</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#1-rm-rf">1) rm -rf / 실행 금지!</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#2-rm-rf">2) 특정 디렉토리에서만 rm -rf 실행</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#3-rm-i-trash-cli">3) 실수 방지를 위해 rm -i 또는 trash-cli 사용</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#7">7. 정리</a>
+    </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../5.rm_ext/">6.5 rm 제외</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../6.ps/">6.6 ps 제외</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../7.kill/">6.7 kill 제외</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">7. 제어문</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch07/1.control/">7.1 제어문</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch07/2.condi/">6.2 조건연산자</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">8. 환경변수</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch08/1.login/">7.1 로그인</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch08/2.bashrc/">6.2 bashrc</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">9. 스크립트</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch09/1.systemd/">9.1 systemd I</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch09/2.systemdu/">9.2 systemd II</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch09/3.crontab/">9.3 crontab</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">쉘프로그램(Bash)</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">6. 명령어II</li>
+      <li class="breadcrumb-item active">6.4 rm</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="rm"><strong><code>rm</code> 명령어 개요 및 사용법</strong></h1>
+<h2 id="1-rm"><strong>1. <code>rm</code>이란?</strong></h2>
+<ul>
+<li><code>rm</code> (<strong>remove</strong>)은 <strong>파일 또는 디렉토리를 삭제하는 명령어</strong></li>
+<li><strong>삭제된 파일은 복구가 어렵기 때문에 주의해야 함</strong></li>
+<li><strong>특정 파일을 제외하고 삭제하는 방법도 가능</strong></li>
+</ul>
+<hr />
+<h2 id="2-rm"><strong>2. <code>rm</code> 기본 문법</strong></h2>
+<p><div class="highlight"><pre><span></span><code>rm<span class="w"> </span><span class="o">[</span>옵션<span class="o">]</span><span class="w"> </span>파일명
+</code></pre></div>
+- <code>[옵션]</code> → 삭제 방식 지정
+- <code>[파일명]</code> → 삭제할 파일 또는 디렉토리</p>
+<hr />
+<h2 id="3-rm"><strong>3. <code>rm</code> 주요 옵션</strong></h2>
+<table>
+<thead>
+<tr>
+<th>옵션</th>
+<th>설명</th>
+<th>예제</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>-f</code></td>
+<td><strong>강제 삭제 (파일이 없어도 오류 메시지 출력 안 함)</strong></td>
+<td><code>rm -f file.txt</code></td>
+</tr>
+<tr>
+<td><code>-i</code></td>
+<td><strong>삭제 확인 메시지 표시 (안전모드)</strong></td>
+<td><code>rm -i file.txt</code></td>
+</tr>
+<tr>
+<td><code>-r</code></td>
+<td><strong>디렉토리 및 하위 파일까지 삭제 (재귀 삭제)</strong></td>
+<td><code>rm -r folder/</code></td>
+</tr>
+<tr>
+<td><code>-d</code></td>
+<td><strong>빈 디렉토리만 삭제</strong></td>
+<td><code>rm -d empty_folder/</code></td>
+</tr>
+<tr>
+<td><code>-v</code></td>
+<td><strong>삭제되는 파일 표시 (verbose)</strong></td>
+<td><code>rm -v file.txt</code></td>
+</tr>
+<tr>
+<td><code>--preserve-root</code></td>
+<td><strong>루트 디렉토리(<code>/</code>) 보호 (기본값)</strong></td>
+<td><code>rm --preserve-root -rf /</code> (실행 안 됨)</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="4-rm"><strong>4. <code>rm</code> 사용 예제</strong></h2>
+<h3 id="1"><strong>1) 기본적인 파일 삭제</strong></h3>
+<p><div class="highlight"><pre><span></span><code>rm<span class="w"> </span>file.txt
+</code></pre></div>
+- <code>file.txt</code> 삭제</p>
+<hr />
+<h3 id="2-i"><strong>2) 삭제 확인 메시지를 표시하며 삭제 (<code>-i</code>)</strong></h3>
+<div class="highlight"><pre><span></span><code>rm<span class="w"> </span>-i<span class="w"> </span>file.txt
+</code></pre></div>
+<h4 id="_1"><strong>출력 예시</strong></h4>
+<p><div class="highlight"><pre><span></span><code>rm: remove regular file &#39;file.txt&#39;? y
+</code></pre></div>
+- <strong>사용자가 <code>y</code>를 입력해야 파일이 삭제됨</strong></p>
+<hr />
+<h3 id="3"><strong>3) 여러 개의 파일 삭제</strong></h3>
+<p><div class="highlight"><pre><span></span><code>rm<span class="w"> </span>file1.txt<span class="w"> </span>file2.txt<span class="w"> </span>file3.txt
+</code></pre></div>
+- <code>file1.txt</code>, <code>file2.txt</code>, <code>file3.txt</code> 삭제</p>
+<hr />
+<h3 id="4"><strong>4) 특정 확장자의 모든 파일 삭제</strong></h3>
+<p><div class="highlight"><pre><span></span><code>rm<span class="w"> </span>*.log
+</code></pre></div>
+- 현재 디렉토리의 모든 <code>.log</code> 파일 삭제</p>
+<hr />
+<h3 id="5-r"><strong>5) 디렉토리와 하위 파일을 포함하여 삭제 (<code>-r</code>)</strong></h3>
+<p><div class="highlight"><pre><span></span><code>rm<span class="w"> </span>-r<span class="w"> </span>my_folder/
+</code></pre></div>
+- <code>my_folder/</code>와 그 안의 모든 파일 삭제<br />
+- <strong>주의: 삭제된 파일은 복구하기 어려움!</strong></p>
+<hr />
+<h3 id="6-f"><strong>6) 강제 삭제 (<code>-f</code>)</strong></h3>
+<p><div class="highlight"><pre><span></span><code>rm<span class="w"> </span>-rf<span class="w"> </span>my_folder/
+</code></pre></div>
+- <strong>삭제 확인 없이 강제 삭제</strong> (<code>-f</code> 강제, <code>-r</code> 재귀)</p>
+<hr />
+<h3 id="7-v"><strong>7) 삭제되는 파일을 확인하면서 삭제 (<code>-v</code>)</strong></h3>
+<div class="highlight"><pre><span></span><code>rm<span class="w"> </span>-rv<span class="w"> </span>my_folder/
+</code></pre></div>
+<h4 id="_2"><strong>출력 예시</strong></h4>
+<p><div class="highlight"><pre><span></span><code>removed &#39;my_folder/file1.txt&#39;
+removed &#39;my_folder/file2.txt&#39;
+removed directory &#39;my_folder&#39;
+</code></pre></div>
+- <strong>어떤 파일이 삭제되는지 확인 가능</strong></p>
+<hr />
+<h2 id="5"><strong>5. 특정 파일을 제외하고 삭제하는 방법</strong></h2>
+<h3 id="1-find-rm"><strong>1) <code>find</code>와 <code>rm</code>을 조합하여 특정 파일 제외</strong></h3>
+<div class="highlight"><pre><span></span><code>find<span class="w"> </span>.<span class="w"> </span>-type<span class="w"> </span>f<span class="w"> </span>!<span class="w"> </span>-name<span class="w"> </span><span class="s2">&quot;important.txt&quot;</span><span class="w"> </span>-delete
+</code></pre></div>
+<h4 id="_3"><strong>설명</strong></h4>
+<ul>
+<li><code>find . -type f</code> → 현재 디렉토리의 모든 파일 찾기</li>
+<li><code>! -name "important.txt"</code> → <code>"important.txt"</code>는 제외</li>
+<li><code>-delete</code> → 검색된 파일 삭제</li>
+</ul>
+<hr />
+<h3 id="2"><strong>2) 여러 개의 특정 파일 제외하고 삭제</strong></h3>
+<div class="highlight"><pre><span></span><code>find<span class="w"> </span>.<span class="w"> </span>-type<span class="w"> </span>f<span class="w"> </span>!<span class="w"> </span>-name<span class="w"> </span><span class="s2">&quot;important1.txt&quot;</span><span class="w"> </span>!<span class="w"> </span>-name<span class="w"> </span><span class="s2">&quot;important2.txt&quot;</span><span class="w"> </span>-delete
+</code></pre></div>
+<h4 id="_4"><strong>설명</strong></h4>
+<ul>
+<li><code>"important1.txt"</code> 및 <code>"important2.txt"</code>를 제외한 모든 파일 삭제</li>
+</ul>
+<hr />
+<h3 id="3_1"><strong>3) 특정 확장자 제외하고 삭제</strong></h3>
+<div class="highlight"><pre><span></span><code>find<span class="w"> </span>.<span class="w"> </span>-type<span class="w"> </span>f<span class="w"> </span>!<span class="w"> </span>-name<span class="w"> </span><span class="s2">&quot;*.log&quot;</span><span class="w"> </span>-delete
+</code></pre></div>
+<h4 id="_5"><strong>설명</strong></h4>
+<ul>
+<li><code>.log</code> 파일은 남기고, <strong>나머지 모든 파일 삭제</strong></li>
+</ul>
+<hr />
+<h3 id="4-rm-grep"><strong>4) <code>rm</code>과 <code>grep</code>을 조합하여 특정 파일 제외</strong></h3>
+<div class="highlight"><pre><span></span><code>ls<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>-v<span class="w"> </span><span class="s2">&quot;important.txt&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>xargs<span class="w"> </span>rm
+</code></pre></div>
+<h4 id="_6"><strong>설명</strong></h4>
+<ul>
+<li><code>ls</code> → 현재 디렉토리 파일 목록 출력</li>
+<li><code>grep -v "important.txt"</code> → <code>"important.txt"</code>를 제외한 파일 목록 필터링</li>
+<li><code>xargs rm</code> → 필터링된 파일만 삭제</li>
+</ul>
+<hr />
+<h2 id="6-rm"><strong>6. <code>rm</code>을 사용할 때 주의할 점</strong></h2>
+<h3 id="1-rm-rf"><strong>1) <code>rm -rf /</code> 실행 금지!</strong></h3>
+<p><div class="highlight"><pre><span></span><code>rm<span class="w"> </span>-rf<span class="w"> </span>/
+</code></pre></div>
+- <strong>루트 디렉토리를 삭제하면 시스템이 완전히 망가짐</strong>
+- 최신 리눅스 배포판에서는 <code>--preserve-root</code> 기본 활성화로 보호됨</p>
+<hr />
+<h3 id="2-rm-rf"><strong>2) 특정 디렉토리에서만 <code>rm -rf</code> 실행</strong></h3>
+<p><div class="highlight"><pre><span></span><code>rm<span class="w"> </span>-rf<span class="w"> </span>/home/user/temp/
+</code></pre></div>
+- 특정 디렉토리 안에서만 실행해야 안전</p>
+<hr />
+<h3 id="3-rm-i-trash-cli"><strong>3) 실수 방지를 위해 <code>rm -i</code> 또는 <code>trash-cli</code> 사용</strong></h3>
+<p><div class="highlight"><pre><span></span><code>rm<span class="w"> </span>-i<span class="w"> </span>file.txt
+</code></pre></div>
+- <strong>삭제 전 확인 메시지 표시 (안전모드)</strong></p>
+<p><div class="highlight"><pre><span></span><code>trash-put<span class="w"> </span>file.txt
+</code></pre></div>
+- <code>trash-cli</code> 패키지를 설치하면 휴지통으로 이동 가능</p>
+<hr />
+<h2 id="7"><strong>7. 정리</strong></h2>
+<table>
+<thead>
+<tr>
+<th>명령어</th>
+<th>설명</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>rm file.txt</code></td>
+<td>파일 삭제</td>
+</tr>
+<tr>
+<td><code>rm -i file.txt</code></td>
+<td>삭제 전 확인</td>
+</tr>
+<tr>
+<td><code>rm -r my_folder/</code></td>
+<td>폴더 및 하위 파일 삭제</td>
+</tr>
+<tr>
+<td><code>rm -rf my_folder/</code></td>
+<td>강제 삭제</td>
+</tr>
+<tr>
+<td><code>find . -type f ! -name "important.txt" -delete</code></td>
+<td>특정 파일 제외하고 삭제</td>
+</tr>
+<tr>
+<td><code>rm -rv my_folder/</code></td>
+<td>삭제되는 파일 확인</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><code>rm</code>은 <strong>삭제된 파일을 복구하기 어려우므로 주의해야 함</strong></li>
+<li>특정 파일을 제외하고 삭제하려면 <strong><code>find</code>와 <code>! -name</code> 조합</strong>  </li>
+<li>실수 방지를 위해 <code>rm -i</code> 또는 <code>trash-cli</code> 사용 추천 🚀</li>
+</ul>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../3.grep_ext/" class="btn btn-neutral float-left" title="6.3 grep 정규식"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../5.rm_ext/" class="btn btn-neutral float-right" title="6.5 rm 제외">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../3.grep_ext/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../5.rm_ext/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://rco123.github.io/man_shell_program/ch02/5.array/" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>2.5 배열 - 쉘프로그램(Bash)</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../../css/style.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "2.5 \ubc30\uc5f4";
+        var mkdocs_page_input_path = "ch02\\5.array.md";
+        var mkdocs_page_url = "/man_shell_program/ch02/5.array/";
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> 쉘프로그램(Bash)
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../..">Home</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">1. 시작하기</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch01/1.bash/">1.1 개요</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch01/2.cmd/">1.2 cmd</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch01/3.app/">1.3 app</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">2. 변수</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../1.var/">2.1 변수만들기</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../2.var_ext/">2.2 변수확장</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../3.math/">2.3 숫자연산</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../4.exam/">2.4 실습</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">2.5 배열</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#1-indexed-array">1. 일반 배열 (Indexed Array)</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#_2">선언 및 초기화</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_3">요소 접근 및 출력</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_4">배열 길이 확인</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#c-for">C 스타일의 for 루프를 사용하여 순회</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#2-associative-array">2. 연관 배열 (Associative Array)</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#_5">선언 및 초기화</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_6">요소 접근 및 출력</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_7">연관 배열 순회</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_8">요약</a>
+    </li>
+    </ul>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">3. 문자열</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch03/1.string/">3.1 문자열</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch03/2.char/">3.2 특수문자</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch03/3.exam/">3.3 실습</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">4. 함수</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch04/1.func/">4.1 함수만들기</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch04/2.return/">4.2 반환값I</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch04/3.return_ex/">4.3 반환값II</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">5. 명령어</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch05/1.stdio/">5.1 표준입출력</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch05/2.run/">5.2 명령실행</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch05/3.pipe/">5.3 파이프</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">6. 명령어II</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch06/1.find/">6.1 find</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch06/2.grep/">6.2 grep</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch06/3.grep_ext/">6.3 grep 정규식</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch06/4.rm/">6.4 rm</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch06/5.rm_ext/">6.5 rm 제외</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch06/6.ps/">6.6 ps 제외</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch06/7.kill/">6.7 kill 제외</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">7. 제어문</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch07/1.control/">7.1 제어문</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch07/2.condi/">6.2 조건연산자</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">8. 환경변수</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch08/1.login/">7.1 로그인</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch08/2.bashrc/">6.2 bashrc</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">9. 스크립트</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch09/1.systemd/">9.1 systemd I</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch09/2.systemdu/">9.2 systemd II</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch09/3.crontab/">9.3 crontab</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">쉘프로그램(Bash)</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">2. 변수</li>
+      <li class="breadcrumb-item active">2.5 배열</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="_1">배열</h1>
+<p>Bash에서는 두 종류의 배열을 사용할 수 있습니다. 하나는 **일반 배열(인덱스 배열)**이고, 다른 하나는 **연관 배열(associative array)**입니다. 두 배열 모두 여러 값을 저장할 수 있지만, 인덱스 방식이 다릅니다.</p>
+<hr />
+<h2 id="1-indexed-array">1. 일반 배열 (Indexed Array)</h2>
+<p>일반 배열은 숫자 인덱스를 사용하여 값을 저장합니다. 기본 인덱스는 0부터 시작하며, 배열의 각 요소는 순서대로 저장됩니다.</p>
+<h3 id="_2">선언 및 초기화</h3>
+<ol>
+<li><strong>선언 및 값 할당</strong><br />
+   <div class="highlight"><pre><span></span><code><span class="c1"># 한 줄에 여러 값을 넣어서 초기화</span>
+<span class="nv">fruits</span><span class="o">=(</span><span class="s2">&quot;apple&quot;</span><span class="w"> </span><span class="s2">&quot;banana&quot;</span><span class="w"> </span><span class="s2">&quot;cherry&quot;</span><span class="o">)</span>
+</code></pre></div></li>
+<li><strong>개별 요소에 값 할당</strong><br />
+   <div class="highlight"><pre><span></span><code><span class="c1"># 배열 선언 후 개별 요소에 값 할당</span>
+fruits<span class="o">[</span><span class="m">0</span><span class="o">]=</span><span class="s2">&quot;apple&quot;</span>
+fruits<span class="o">[</span><span class="m">1</span><span class="o">]=</span><span class="s2">&quot;banana&quot;</span>
+fruits<span class="o">[</span><span class="m">2</span><span class="o">]=</span><span class="s2">&quot;cherry&quot;</span>
+</code></pre></div></li>
+</ol>
+<h3 id="_3">요소 접근 및 출력</h3>
+<ul>
+<li>배열 전체의 요소 출력:<br />
+  <div class="highlight"><pre><span></span><code><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">fruits</span><span class="p">[@]</span><span class="si">}</span><span class="s2">&quot;</span>
+</code></pre></div></li>
+<li>배열의 특정 요소 출력 (예: 인덱스 1):<br />
+  <div class="highlight"><pre><span></span><code><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">fruits</span><span class="p">[1]</span><span class="si">}</span><span class="s2">&quot;</span>
+</code></pre></div></li>
+</ul>
+<h3 id="_4">배열 길이 확인</h3>
+<ul>
+<li>배열에 저장된 요소 개수:<br />
+  <div class="highlight"><pre><span></span><code><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;</span><span class="si">${#</span><span class="nv">fruits</span><span class="p">[@]</span><span class="si">}</span><span class="s2">&quot;</span>
+</code></pre></div></li>
+</ul>
+<h3 id="c-for">C 스타일의 for 루프를 사용하여 순회</h3>
+<div class="highlight"><pre><span></span><code><span class="k">for</span><span class="w"> </span><span class="o">((</span><span class="w"> </span><span class="nv">i</span><span class="o">=</span><span class="m">0</span><span class="p">;</span><span class="w"> </span>i<span class="w"> </span>&lt;<span class="w"> </span><span class="si">${#</span><span class="nv">fruits</span><span class="p">[@]</span><span class="si">}</span><span class="p">;</span><span class="w"> </span>i++<span class="w"> </span><span class="o">))</span><span class="p">;</span><span class="w"> </span><span class="k">do</span>
+<span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Fruit </span><span class="nv">$i</span><span class="s2">: </span><span class="si">${</span><span class="nv">fruits</span><span class="p">[i]</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="k">done</span>
+</code></pre></div>
+<p>또는 일반 for 루프를 사용할 수도 있습니다.</p>
+<div class="highlight"><pre><span></span><code><span class="k">for</span><span class="w"> </span>fruit<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">fruits</span><span class="p">[@]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">;</span><span class="w"> </span><span class="k">do</span>
+<span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$fruit</span><span class="s2">&quot;</span>
+<span class="k">done</span>
+</code></pre></div>
+<hr />
+<h2 id="2-associative-array">2. 연관 배열 (Associative Array)</h2>
+<p>연관 배열은 숫자 인덱스 대신 **키(key)**를 사용하여 값을 저장합니다. Bash 4 이상에서 지원됩니다.</p>
+<h3 id="_5">선언 및 초기화</h3>
+<p>연관 배열을 사용하기 전에 <code>declare -A</code> 명령을 사용하여 배열임을 선언해야 합니다.</p>
+<div class="highlight"><pre><span></span><code><span class="nb">declare</span><span class="w"> </span>-A<span class="w"> </span>person
+</code></pre></div>
+<p>이후, 키와 값을 할당합니다.</p>
+<div class="highlight"><pre><span></span><code>person<span class="o">[</span>name<span class="o">]=</span><span class="s2">&quot;Alice&quot;</span>
+person<span class="o">[</span>age<span class="o">]=</span><span class="m">30</span>
+person<span class="o">[</span>city<span class="o">]=</span><span class="s2">&quot;Seoul&quot;</span>
+</code></pre></div>
+<h3 id="_6">요소 접근 및 출력</h3>
+<ul>
+<li>
+<p>특정 키의 값 출력:<br />
+  <div class="highlight"><pre><span></span><code><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Name: </span><span class="si">${</span><span class="nv">person</span><span class="p">[name]</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Age: </span><span class="si">${</span><span class="nv">person</span><span class="p">[age]</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;City: </span><span class="si">${</span><span class="nv">person</span><span class="p">[city]</span><span class="si">}</span><span class="s2">&quot;</span>
+</code></pre></div></p>
+</li>
+<li>
+<p>배열의 모든 키를 출력:<br />
+  <div class="highlight"><pre><span></span><code><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Keys: </span><span class="si">${</span><span class="p">!person[@]</span><span class="si">}</span><span class="s2">&quot;</span>
+</code></pre></div>
+  여기서 <code>${!person[@]}</code>는 연관 배열 <code>person</code>의 모든 키 목록을 반환합니다.</p>
+</li>
+<li>
+<p>배열의 모든 값을 출력:<br />
+  <div class="highlight"><pre><span></span><code><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Values: </span><span class="si">${</span><span class="nv">person</span><span class="p">[@]</span><span class="si">}</span><span class="s2">&quot;</span>
+</code></pre></div></p>
+</li>
+</ul>
+<h3 id="_7">연관 배열 순회</h3>
+<p>연관 배열의 각 요소를 순회할 때는 키 목록을 이용할 수 있습니다.</p>
+<div class="highlight"><pre><span></span><code><span class="k">for</span><span class="w"> </span>key<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="p">!person[@]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">;</span><span class="w"> </span><span class="k">do</span>
+<span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Key: </span><span class="nv">$key</span><span class="s2">, Value: </span><span class="si">${</span><span class="nv">person</span><span class="p">[</span><span class="nv">$key</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="k">done</span>
+</code></pre></div>
+<hr />
+<h2 id="_8">요약</h2>
+<ul>
+<li><strong>일반 배열(Indexed Array):</strong>  </li>
+<li><strong>인덱스:</strong> 0, 1, 2, …와 같은 숫자로 요소에 접근  </li>
+<li><strong>선언:</strong> <code>fruits=("apple" "banana" "cherry")</code>  </li>
+<li><strong>접근:</strong> <code>${fruits[index]}</code>, 전체 출력은 <code>${fruits[@]}</code>  </li>
+<li>
+<p><strong>길이:</strong> <code>${#fruits[@]}</code></p>
+</li>
+<li>
+<p><strong>연관 배열(Associative Array):</strong>  </p>
+</li>
+<li><strong>키:</strong> 문자열(예: "name", "age", "city")를 사용  </li>
+<li><strong>선언:</strong> <code>declare -A person</code>  </li>
+<li><strong>할당:</strong> <code>person[name]="Alice"</code>  </li>
+<li><strong>접근:</strong> <code>${person[name]}</code>, 키 목록은 <code>${!person[@]}</code>, 값 목록은 <code>${person[@]}</code>  </li>
+<li><strong>순회:</strong> <code>for key in "${!person[@]}"; do ...; done</code></li>
+</ul>
+<p>이와 같이 Bash에서는 상황에 맞게 일반 배열과 연관 배열을 사용하여 여러 데이터를 효율적으로 관리할 수 있습니다.</p>
+<p><br></p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../4.exam/" class="btn btn-neutral float-left" title="2.4 실습"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../../ch03/1.string/" class="btn btn-neutral float-right" title="3.1 문자열">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../4.exam/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../../ch03/1.string/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

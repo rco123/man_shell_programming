@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://rco123.github.io/man_shell_program/ch03/2.char/" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>3.2 특수문자 - 쉘프로그램(Bash)</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../../css/style.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "3.2 \ud2b9\uc218\ubb38\uc790";
+        var mkdocs_page_input_path = "ch03\\2.char.md";
+        var mkdocs_page_url = "/man_shell_program/ch03/2.char/";
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> 쉘프로그램(Bash)
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../..">Home</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">1. 시작하기</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch01/1.bash/">1.1 개요</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch01/2.cmd/">1.2 cmd</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch01/3.app/">1.3 app</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">2. 변수</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch02/1.var/">2.1 변수만들기</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch02/2.var_ext/">2.2 변수확장</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch02/3.math/">2.3 숫자연산</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch02/4.exam/">2.4 실습</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch02/5.array/">2.5 배열</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">3. 문자열</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../1.string/">3.1 문자열</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">3.2 특수문자</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#1">1. 기본 특수 문자</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#2">2. 문자열 확장에 관련된 특수 문자</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#3">3. 명령어 및 프로세스 관련 특수 문자</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#4">4. 특수 문자 활용 예제</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#1_1">1) *(와일드카드) 사용 예제</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#2_1">2) ${}를 이용한 문자열 처리</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#3_1">3) 명령어 치환을 이용한 문자열 생성</a>
+    </li>
+        </ul>
+    </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../3.exam/">3.3 실습</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">4. 함수</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch04/1.func/">4.1 함수만들기</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch04/2.return/">4.2 반환값I</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch04/3.return_ex/">4.3 반환값II</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">5. 명령어</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch05/1.stdio/">5.1 표준입출력</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch05/2.run/">5.2 명령실행</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch05/3.pipe/">5.3 파이프</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">6. 명령어II</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch06/1.find/">6.1 find</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch06/2.grep/">6.2 grep</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch06/3.grep_ext/">6.3 grep 정규식</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch06/4.rm/">6.4 rm</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch06/5.rm_ext/">6.5 rm 제외</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch06/6.ps/">6.6 ps 제외</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch06/7.kill/">6.7 kill 제외</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">7. 제어문</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch07/1.control/">7.1 제어문</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch07/2.condi/">6.2 조건연산자</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">8. 환경변수</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch08/1.login/">7.1 로그인</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch08/2.bashrc/">6.2 bashrc</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">9. 스크립트</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch09/1.systemd/">9.1 systemd I</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch09/2.systemdu/">9.2 systemd II</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch09/3.crontab/">9.3 crontab</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">쉘프로그램(Bash)</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">3. 문자열</li>
+      <li class="breadcrumb-item active">3.2 특수문자</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h2 id="_1"><strong>쉘에서 문자열을 구성하는 특수 문자들</strong></h2>
+<p>쉘에서 문자열을 다룰 때 다양한 **특수 문자**가 사용되며, 각각의 의미와 용도가 다름.<br />
+특수 문자를 올바르게 사용하면 보다 강력하고 유연한 스크립트를 작성할 수 있음.  </p>
+<hr />
+<h3 id="1"><strong>1. 기본 특수 문자</strong></h3>
+<table>
+<thead>
+<tr>
+<th>특수 문자</th>
+<th>의미</th>
+<th>예제</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>*</code></td>
+<td>와일드카드 (모든 문자열과 매칭)</td>
+<td><code>ls *.txt</code> → 모든 <code>.txt</code> 파일 표시</td>
+</tr>
+<tr>
+<td><code>?</code></td>
+<td>단일 문자와 매칭</td>
+<td><code>ls file?.txt</code> → <code>file1.txt</code>, <code>fileA.txt</code> 등과 매칭</td>
+</tr>
+<tr>
+<td><code>~</code></td>
+<td>사용자의 홈 디렉토리</td>
+<td><code>cd ~</code> → <code>/home/user</code>로 이동</td>
+</tr>
+<tr>
+<td><code>$</code></td>
+<td>변수 값 참조</td>
+<td><code>echo $HOME</code> → <code>/home/user</code> 출력</td>
+</tr>
+<tr>
+<td><code>{}</code></td>
+<td>문자열 그룹 또는 변수 확장</td>
+<td><code>echo {one,two,three}</code> → <code>one two three</code> 출력</td>
+</tr>
+<tr>
+<td><code>[]</code></td>
+<td>문자 클래스 지정</td>
+<td><code>ls file[1-3].txt</code> → <code>file1.txt</code>, <code>file2.txt</code>, <code>file3.txt</code> 검색</td>
+</tr>
+<tr>
+<td><code>\</code></td>
+<td>특수 문자 이스케이프</td>
+<td><code>echo \$HOME</code> → <code>$HOME</code> 출력</td>
+</tr>
+<tr>
+<td><code>' '</code></td>
+<td>싱글 쿼트(문자 그대로 해석)</td>
+<td><code>'echo $HOME'</code> → <code>echo $HOME</code> 출력</td>
+</tr>
+<tr>
+<td><code>" "</code></td>
+<td>더블 쿼트(변수 치환 가능)</td>
+<td><code>"echo $HOME"</code> → <code>/home/user</code> 출력</td>
+</tr>
+<tr>
+<td><code>` `</code></td>
+<td>명령어 치환(백틱)</td>
+<td><code>echo `date`</code> → 현재 날짜 출력</td>
+</tr>
+<tr>
+<td><code>$( )</code></td>
+<td>명령어 치환</td>
+<td><code>echo $(date)</code> → 현재 날짜 출력</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="2"><strong>2. 문자열 확장에 관련된 특수 문자</strong></h3>
+<table>
+<thead>
+<tr>
+<th>특수 문자</th>
+<th>의미</th>
+<th>예제</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>${변수}</code></td>
+<td>변수 값 출력</td>
+<td><code>echo ${USER}</code> → <code>user</code> 출력</td>
+</tr>
+<tr>
+<td><code>${변수:-기본값}</code></td>
+<td>변수가 비어 있으면 기본값 사용</td>
+<td><code>echo ${name:-Guest}</code></td>
+</tr>
+<tr>
+<td><code>${#변수}</code></td>
+<td>문자열 길이 계산</td>
+<td><code>text="hello"; echo ${#text}</code> → <code>5</code> 출력</td>
+</tr>
+<tr>
+<td><code>${변수:시작:길이}</code></td>
+<td>부분 문자열 추출</td>
+<td><code>echo ${text:1:3}</code> → <code>ell</code> 출력</td>
+</tr>
+<tr>
+<td><code>${변수/패턴/치환값}</code></td>
+<td>첫 번째 패턴 치환</td>
+<td><code>text="hello"; echo ${text/l/x}</code> → <code>hexlo</code></td>
+</tr>
+<tr>
+<td><code>${변수//패턴/치환값}</code></td>
+<td>모든 패턴 치환</td>
+<td><code>text="hello"; echo ${text//l/x}</code> → <code>hexxo</code></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="3"><strong>3. 명령어 및 프로세스 관련 특수 문자</strong></h3>
+<table>
+<thead>
+<tr>
+<th>특수 문자</th>
+<th>의미</th>
+<th>예제</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>|</code></td>
+<td>파이프(출력 → 입력)</td>
+<td><code>ls | grep txt</code></td>
+</tr>
+<tr>
+<td><code>&gt;</code></td>
+<td>출력 리디렉션(덮어쓰기)</td>
+<td><code>echo "Hello" &gt; file.txt</code></td>
+</tr>
+<tr>
+<td><code>&gt;&gt;</code></td>
+<td>출력 리디렉션(추가)</td>
+<td><code>echo "Hello" &gt;&gt; file.txt</code></td>
+</tr>
+<tr>
+<td><code>&lt;</code></td>
+<td>입력 리디렉션</td>
+<td><code>sort &lt; file.txt</code></td>
+</tr>
+<tr>
+<td><code>&amp;</code></td>
+<td>백그라운드 실행</td>
+<td><code>sleep 10 &amp;</code></td>
+</tr>
+<tr>
+<td><code>&amp;&amp;</code></td>
+<td>명령어 연속 실행 (성공 시)</td>
+<td><code>mkdir test &amp;&amp; cd test</code></td>
+</tr>
+<tr>
+<td><code>||</code></td>
+<td>명령어 연속 실행 (실패 시)</td>
+<td><code>mkdir test || echo "생성 실패"</code></td>
+</tr>
+<tr>
+<td><code>;</code></td>
+<td>여러 명령어 한 줄 실행</td>
+<td><code>echo "Hello"; ls</code></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="4"><strong>4. 특수 문자 활용 예제</strong></h3>
+<h4 id="1_1"><strong>1) <code>*</code>(와일드카드) 사용 예제</strong></h4>
+<div class="highlight"><pre><span></span><code>ls<span class="w"> </span>*.sh<span class="w">  </span><span class="c1"># 확장자가 .sh인 모든 파일 출력</span>
+</code></pre></div>
+<h4 id="2_1"><strong>2) <code>${}</code>를 이용한 문자열 처리</strong></h4>
+<div class="highlight"><pre><span></span><code><span class="nv">text</span><span class="o">=</span><span class="s2">&quot;Hello Bash&quot;</span>
+<span class="nb">echo</span><span class="w"> </span><span class="si">${</span><span class="nv">text</span><span class="p">:</span><span class="nv">6</span><span class="si">}</span><span class="w">   </span><span class="c1"># Bash 출력</span>
+<span class="nb">echo</span><span class="w"> </span><span class="si">${</span><span class="nv">text</span><span class="p">:</span><span class="nv">0</span><span class="p">:</span><span class="nv">5</span><span class="si">}</span><span class="w"> </span><span class="c1"># Hello 출력</span>
+<span class="nb">echo</span><span class="w"> </span><span class="si">${#</span><span class="nv">text</span><span class="si">}</span><span class="w">    </span><span class="c1"># 문자열 길이 출력 (11)</span>
+</code></pre></div>
+<h4 id="3_1"><strong>3) 명령어 치환을 이용한 문자열 생성</strong></h4>
+<div class="highlight"><pre><span></span><code><span class="nv">today</span><span class="o">=</span><span class="k">$(</span>date<span class="w"> </span>+%Y-%m-%d<span class="k">)</span>
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;오늘 날짜: </span><span class="nv">$today</span><span class="s2">&quot;</span>
+</code></pre></div>
+<p>쉘에서 문자열을 다룰 때 위의 특수 문자들을 잘 활용하면 더욱 효율적인 스크립트를 작성할 수 있음. 🚀</p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../1.string/" class="btn btn-neutral float-left" title="3.1 문자열"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../3.exam/" class="btn btn-neutral float-right" title="3.3 실습">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../1.string/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../3.exam/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

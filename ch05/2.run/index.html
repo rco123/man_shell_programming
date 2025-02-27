@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://rco123.github.io/man_shell_program/ch05/2.run/" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>5.2 명령실행 - 쉘프로그램(Bash)</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../../css/style.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "5.2 \uba85\ub839\uc2e4\ud589";
+        var mkdocs_page_input_path = "ch05\\2.run.md";
+        var mkdocs_page_url = "/man_shell_program/ch05/2.run/";
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> 쉘프로그램(Bash)
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../..">Home</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">1. 시작하기</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch01/1.bash/">1.1 개요</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch01/2.cmd/">1.2 cmd</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch01/3.app/">1.3 app</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">2. 변수</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch02/1.var/">2.1 변수만들기</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch02/2.var_ext/">2.2 변수확장</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch02/3.math/">2.3 숫자연산</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch02/4.exam/">2.4 실습</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch02/5.array/">2.5 배열</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">3. 문자열</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch03/1.string/">3.1 문자열</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch03/2.char/">3.2 특수문자</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch03/3.exam/">3.3 실습</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">4. 함수</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch04/1.func/">4.1 함수만들기</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch04/2.return/">4.2 반환값I</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch04/3.return_ex/">4.3 반환값II</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">5. 명령어</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../1.stdio/">5.1 표준입출력</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">5.2 명령실행</a>
+    <ul class="current">
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../3.pipe/">5.3 파이프</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">6. 명령어II</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch06/1.find/">6.1 find</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch06/2.grep/">6.2 grep</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch06/3.grep_ext/">6.3 grep 정규식</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch06/4.rm/">6.4 rm</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch06/5.rm_ext/">6.5 rm 제외</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch06/6.ps/">6.6 ps 제외</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch06/7.kill/">6.7 kill 제외</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">7. 제어문</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch07/1.control/">7.1 제어문</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch07/2.condi/">6.2 조건연산자</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">8. 환경변수</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch08/1.login/">7.1 로그인</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch08/2.bashrc/">6.2 bashrc</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">9. 스크립트</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch09/1.systemd/">9.1 systemd I</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch09/2.systemdu/">9.2 systemd II</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch09/3.crontab/">9.3 crontab</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">쉘프로그램(Bash)</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">5. 명령어</li>
+      <li class="breadcrumb-item active">5.2 명령실행</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h2 id="_1"><strong>쉘에서 명령 실행</strong></h2>
+<p>쉘에서 **명령이 끝난 후 다음 명령으로 전달하는 방법**에는 여러 가지가 있음.<br />
+각 방법은 실행 순서, 성공/실패 여부, 데이터 전달 방식에 따라 다르게 동작함.  </p>
+<hr />
+<h2 id="1-"><strong>1. <code>;</code> (세미콜론) - 순차 실행</strong></h2>
+<ul>
+<li><strong>각 명령을 순서대로 실행</strong> (앞 명령어가 성공하든 실패하든 다음 명령 실행)  </li>
+<li><strong>독립적인 명령어 실행</strong>  </li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;첫 번째 명령어 실행&quot;</span><span class="p">;</span><span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;두 번째 명령어 실행&quot;</span>
+</code></pre></div>
+<h4 id="_2"><strong>실행 결과</strong></h4>
+<div class="highlight"><pre><span></span><code>첫 번째 명령어 실행
+두 번째 명령어 실행
+</code></pre></div>
+<h5 id="_3"><strong>✔ 핵심 정리</strong></h5>
+<ul>
+<li><strong>첫 번째 명령어 실행 후 무조건 두 번째 명령어 실행</strong></li>
+<li><strong>성공/실패 여부와 관계없이 다음 명령 실행</strong></li>
+</ul>
+<hr />
+<h2 id="2-and-"><strong>2. <code>&amp;&amp;</code> (AND 연산자) - 앞 명령이 성공하면 실행</strong></h2>
+<ul>
+<li><strong>첫 번째 명령이 성공(0)하면 두 번째 명령 실행</strong>  </li>
+<li><strong>첫 번째 명령이 실패(0이 아닌 값 반환)하면 두 번째 명령 실행 안 함</strong>  </li>
+</ul>
+<div class="highlight"><pre><span></span><code>mkdir<span class="w"> </span>test_dir<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>test_dir
+</code></pre></div>
+<h4 id="_4"><strong>실행 결과 (성공 시)</strong></h4>
+<div class="highlight"><pre><span></span><code>(디렉토리 생성 후 `cd test_dir` 실행)
+</code></pre></div>
+<h4 id="_5"><strong>실행 결과 (실패 시)</strong></h4>
+<div class="highlight"><pre><span></span><code>mkdir: cannot create directory ‘test_dir’: File exists
+(디렉토리가 이미 존재하면 `cd test_dir` 실행 안 함)
+</code></pre></div>
+<h5 id="_6"><strong>✔ 핵심 정리</strong></h5>
+<ul>
+<li><strong>첫 번째 명령이 성공(0 반환)해야 두 번째 명령 실행</strong></li>
+<li><strong>연속적인 작업을 할 때 유용 (예: 디렉토리 생성 후 이동)</strong></li>
+</ul>
+<hr />
+<h2 id="3-or-"><strong>3. <code>||</code> (OR 연산자) - 앞 명령이 실패하면 실행</strong></h2>
+<ul>
+<li><strong>첫 번째 명령이 실패(0이 아닌 값 반환)하면 두 번째 명령 실행</strong>  </li>
+<li><strong>첫 번째 명령이 성공하면 두 번째 명령 실행 안 함</strong>  </li>
+</ul>
+<div class="highlight"><pre><span></span><code>mkdir<span class="w"> </span>test_dir<span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;디렉토리 생성 실패&quot;</span>
+</code></pre></div>
+<h4 id="_7"><strong>실행 결과 (성공 시)</strong></h4>
+<div class="highlight"><pre><span></span><code>(디렉토리가 생성되었으므로 `echo` 실행 안 함)
+</code></pre></div>
+<h4 id="_8"><strong>실행 결과 (실패 시)</strong></h4>
+<div class="highlight"><pre><span></span><code>mkdir: cannot create directory ‘test_dir’: File exists
+디렉토리 생성 실패
+</code></pre></div>
+<h5 id="_9"><strong>✔ 핵심 정리</strong></h5>
+<ul>
+<li><strong>첫 번째 명령이 실패(0이 아닌 값 반환)하면 두 번째 명령 실행</strong></li>
+<li><strong>예: 오류 메시지를 출력할 때 사용</strong></li>
+</ul>
+<hr />
+<h2 id="4-"><strong>4. <code>|</code> (파이프) - 앞 명령의 출력을 다음 명령의 입력으로 전달</strong></h2>
+<ul>
+<li><strong>첫 번째 명령어의 출력을 두 번째 명령어의 입력으로 사용</strong>  </li>
+<li><strong>데이터 흐름을 연결하여 활용 가능</strong>  </li>
+</ul>
+<div class="highlight"><pre><span></span><code>ls<span class="w"> </span>-l<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span><span class="s2">&quot;.sh&quot;</span>
+</code></pre></div>
+<h4 id="_10"><strong>실행 결과</strong></h4>
+<p><div class="highlight"><pre><span></span><code>-rwxr-xr-x  1 user user  4096 Feb 26 10:00 script.sh
+</code></pre></div>
+(현재 디렉토리에서 <code>.sh</code> 파일만 출력)</p>
+<h5 id="_11"><strong>✔ 핵심 정리</strong></h5>
+<ul>
+<li><strong>데이터를 연속적으로 처리할 때 사용</strong></li>
+<li><strong>출력을 필터링하거나 가공할 때 유용</strong></li>
+</ul>
+<hr />
+<h2 id="5-"><strong>5. <code>&amp;</code> (백그라운드 실행) - 명령을 백그라운드에서 실행</strong></h2>
+<ul>
+<li><strong>명령을 백그라운드에서 실행하고 즉시 프롬프트로 돌아옴</strong>  </li>
+</ul>
+<div class="highlight"><pre><span></span><code>sleep<span class="w"> </span><span class="m">10</span><span class="w"> </span><span class="p">&amp;</span>
+</code></pre></div>
+<h4 id="_12"><strong>실행 결과</strong></h4>
+<div class="highlight"><pre><span></span><code>[1] 12345  (프로세스 ID 출력)
+(백그라운드에서 실행되며, 즉시 다음 명령어 입력 가능)
+</code></pre></div>
+<h5 id="_13"><strong>✔ 핵심 정리</strong></h5>
+<ul>
+<li><strong>백그라운드에서 실행하고 다음 작업을 즉시 수행 가능</strong></li>
+<li><strong>백그라운드 프로세스의 PID 확인 가능</strong></li>
+</ul>
+<hr />
+<h2 id="6-"><strong>6. <code>()</code> (서브셸 실행) - 별도의 프로세스로 실행</strong></h2>
+<ul>
+<li><strong>명령을 서브셸에서 실행하며, 현재 쉘 환경에 영향을 주지 않음</strong>  </li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="o">(</span><span class="nb">cd</span><span class="w"> </span>/tmp<span class="p">;</span><span class="w"> </span>ls<span class="o">)</span>
+<span class="nb">pwd</span><span class="w">  </span><span class="c1"># 현재 디렉토리는 원래 위치 유지</span>
+</code></pre></div>
+<h4 id="_14"><strong>실행 결과</strong></h4>
+<div class="highlight"><pre><span></span><code>(file1  file2  ...)
+(현재 디렉토리는 원래 위치 유지)
+</code></pre></div>
+<h5 id="_15"><strong>✔ 핵심 정리</strong></h5>
+<ul>
+<li><strong>서브셸에서 실행되므로 원래 환경을 변경하지 않음</strong></li>
+<li><strong>일시적인 디렉토리 변경 등에 사용 가능</strong></li>
+</ul>
+<hr />
+<h2 id="7-"><strong>7. <code>{}</code> (현재 셸에서 실행) - 여러 명령을 묶어 실행</strong></h2>
+<ul>
+<li><strong><code>{}</code> 안의 명령들을 현재 셸에서 실행</strong>  </li>
+<li><strong>마지막 명령어 뒤에 반드시 <code>;</code>가 필요</strong>  </li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="o">{</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>/tmp<span class="p">;</span><span class="w"> </span>ls<span class="p">;</span><span class="w"> </span><span class="o">}</span>
+</code></pre></div>
+<h4 id="_16"><strong>실행 결과</strong></h4>
+<div class="highlight"><pre><span></span><code>(file1  file2  ...)
+(현재 디렉토리는 변경됨)
+</code></pre></div>
+<h5 id="_17"><strong>✔ 핵심 정리</strong></h5>
+<ul>
+<li><strong>현재 셸에서 실행되므로 환경 변화가 유지됨</strong></li>
+<li><strong>디렉토리 변경 후 지속적으로 유지하려면 <code>{}</code> 사용</strong></li>
+</ul>
+<hr />
+<h2 id="8-"><strong>8. <code>&gt;</code> (출력 리디렉션) - 명령 출력을 파일로 저장</strong></h2>
+<ul>
+<li><strong>명령어 실행 결과를 파일에 저장 (덮어쓰기)</strong>  </li>
+</ul>
+<div class="highlight"><pre><span></span><code>ls<span class="w"> </span>&gt;<span class="w"> </span>file_list.txt
+</code></pre></div>
+<h4 id="_18"><strong>실행 결과</strong></h4>
+<ul>
+<li><code>file_list.txt</code> 파일에 <code>ls</code> 출력 결과가 저장됨  </li>
+</ul>
+<hr />
+<h2 id="9-"><strong>9. <code>&gt;&gt;</code> (출력 리디렉션 - 추가)</strong></h2>
+<ul>
+<li><strong>기존 파일 내용을 유지하면서 새로운 출력 추가</strong>  </li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;새로운 로그&quot;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>log.txt
+</code></pre></div>
+<h4 id="_19"><strong>실행 결과</strong></h4>
+<ul>
+<li><code>log.txt</code> 파일의 기존 내용 유지 + 새로운 내용 추가됨  </li>
+</ul>
+<hr />
+<h2 id="10-"><strong>10. <code>&lt;</code> (입력 리디렉션) - 파일 내용을 명령어 입력으로 사용</strong></h2>
+<ul>
+<li><strong>파일 내용을 명령어의 입력으로 전달</strong>  </li>
+</ul>
+<div class="highlight"><pre><span></span><code>sort<span class="w"> </span>&lt;<span class="w"> </span>names.txt
+</code></pre></div>
+<h4 id="_20"><strong>실행 결과</strong></h4>
+<ul>
+<li><code>names.txt</code> 파일을 읽어서 정렬하여 출력  </li>
+</ul>
+<hr />
+<h2 id="11-2-"><strong>11. <code>2&gt;</code> (표준 오류 리디렉션) - 오류 메시지를 파일로 저장</strong></h2>
+<ul>
+<li><strong>표준 오류(에러)를 특정 파일에 저장</strong>  </li>
+</ul>
+<div class="highlight"><pre><span></span><code>ls<span class="w"> </span>nonexistentfile<span class="w"> </span><span class="m">2</span>&gt;<span class="w"> </span>error.log
+</code></pre></div>
+<h4 id="_21"><strong>실행 결과</strong></h4>
+<ul>
+<li>오류 메시지가 <code>error.log</code>에 저장됨  </li>
+</ul>
+<hr />
+<h2 id="12-devnull"><strong>12. <code>/dev/null</code>로 출력 버리기</strong></h2>
+<ul>
+<li><strong>출력 또는 오류 메시지를 버릴 때 사용</strong>  </li>
+</ul>
+<p><div class="highlight"><pre><span></span><code><span class="nb">command</span><span class="w"> </span>&gt;<span class="w"> </span>/dev/null<span class="w"> </span><span class="m">2</span>&gt;<span class="p">&amp;</span><span class="m">1</span>
+</code></pre></div>
+- 표준 출력(<code>&gt;</code>)과 표준 오류(<code>2&gt;</code>)를 모두 <code>/dev/null</code>로 보내서 출력되지 않음  </p>
+<hr />
+<h2 id="_22"><strong>정리</strong></h2>
+<table>
+<thead>
+<tr>
+<th>연산자</th>
+<th>설명</th>
+<th>예제</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>;</code></td>
+<td>순차 실행 (성공/실패 상관없음)</td>
+<td><code>echo "A"; echo "B"</code></td>
+</tr>
+<tr>
+<td><code>&amp;&amp;</code></td>
+<td>앞 명령이 성공하면 실행</td>
+<td><code>mkdir test &amp;&amp; cd test</code></td>
+</tr>
+<tr>
+<td><code>||</code></td>
+<td>앞 명령이 실패하면 실행</td>
+<td><code>mkdir test || echo "실패"</code></td>
+</tr>
+<tr>
+<td><code>|</code></td>
+<td>앞 출력 → 다음 입력</td>
+<td><code>ls | grep ".sh"</code></td>
+</tr>
+<tr>
+<td><code>&amp;</code></td>
+<td>백그라운드 실행</td>
+<td><code>sleep 10 &amp;</code></td>
+</tr>
+<tr>
+<td><code>()</code></td>
+<td>서브셸에서 실행</td>
+<td><code>(cd /tmp; ls)</code></td>
+</tr>
+<tr>
+<td><code>{}</code></td>
+<td>현재 셸에서 실행</td>
+<td><code>{ cd /tmp; ls; }</code></td>
+</tr>
+<tr>
+<td><code>&gt;</code></td>
+<td>출력 리디렉션 (덮어쓰기)</td>
+<td><code>ls &gt; file.txt</code></td>
+</tr>
+<tr>
+<td><code>&gt;&gt;</code></td>
+<td>출력 리디렉션 (추가)</td>
+<td><code>echo "test" &gt;&gt; log.txt</code></td>
+</tr>
+<tr>
+<td><code>&lt;</code></td>
+<td>입력 리디렉션</td>
+<td><code>sort &lt; names.txt</code></td>
+</tr>
+<tr>
+<td><code>2&gt;</code></td>
+<td>표준 오류 리디렉션</td>
+<td><code>ls nonexistent 2&gt; error.log</code></td>
+</tr>
+</tbody>
+</table>
+<p>쉘에서 <strong>명령을 조합하면 강력한 자동화 및 데이터 처리 작업을 쉽게 수행할 수 있음</strong> 🚀</p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../1.stdio/" class="btn btn-neutral float-left" title="5.1 표준입출력"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../3.pipe/" class="btn btn-neutral float-right" title="5.3 파이프">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../1.stdio/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../3.pipe/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

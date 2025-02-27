@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://rco123.github.io/man_shell_program/ch05/1.stdio/" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>5.1 표준입출력 - 쉘프로그램(Bash)</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../../css/style.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "5.1 \ud45c\uc900\uc785\ucd9c\ub825";
+        var mkdocs_page_input_path = "ch05\\1.stdio.md";
+        var mkdocs_page_url = "/man_shell_program/ch05/1.stdio/";
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> 쉘프로그램(Bash)
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../..">Home</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">1. 시작하기</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch01/1.bash/">1.1 개요</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch01/2.cmd/">1.2 cmd</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch01/3.app/">1.3 app</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">2. 변수</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch02/1.var/">2.1 변수만들기</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch02/2.var_ext/">2.2 변수확장</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch02/3.math/">2.3 숫자연산</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch02/4.exam/">2.4 실습</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch02/5.array/">2.5 배열</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">3. 문자열</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch03/1.string/">3.1 문자열</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch03/2.char/">3.2 특수문자</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch03/3.exam/">3.3 실습</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">4. 함수</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch04/1.func/">4.1 함수만들기</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch04/2.return/">4.2 반환값I</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch04/3.return_ex/">4.3 반환값II</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">5. 명령어</span></p>
+              <ul class="current">
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">5.1 표준입출력</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#1">1. 표준 입출력 스트림과 파일 디스크립터 번호</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#2-standard-input-stdin-0">2. 표준 입력 (Standard Input, stdin, 파일 디스크립터 0)</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#1-read">예제 1: read를 사용한 표준 입력</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_1">실행 결과</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#2">예제 2: 파일에서 표준 입력 받기 (&lt; 리디렉션)</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#3-standard-output-stdout-1">3. 표준 출력 (Standard Output, stdout, 파일 디스크립터 1)</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#1_1">예제 1: 기본적인 표준 출력</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_2">실행 결과</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#2_1">예제 2: 표준 출력을 파일로 리디렉션 (&gt;, &gt;&gt;)</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#4-standard-error-stderr-2">4. 표준 오류 (Standard Error, stderr, 파일 디스크립터 2)</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#1_2">예제 1: 존재하지 않는 파일 실행 (오류 발생)</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_3">실행 결과</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#2-2-2">예제 2: 표준 오류를 파일로 저장 (2&gt;, 2&gt;&gt;)</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#5">5. 표준 입출력 리디렉션 및 조합</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#1_3">1) 표준 출력과 표준 오류를 동시에 파일로 저장 (&amp;&gt;)</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#2_2">2) 표준 출력을 파일로 저장하고, 오류는 화면에 출력</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#3-2devnull">3) 표준 오류만 화면에서 숨기기 (2&gt;/dev/null)</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#4">4) 표준 입력을 파일에서 가져오기 (&lt;)</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#5_1">5) 표준 입력, 출력, 오류를 조합한 예제</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#6">6. 표준 입출력 정리</a>
+    </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../2.run/">5.2 명령실행</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../3.pipe/">5.3 파이프</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">6. 명령어II</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch06/1.find/">6.1 find</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch06/2.grep/">6.2 grep</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch06/3.grep_ext/">6.3 grep 정규식</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch06/4.rm/">6.4 rm</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch06/5.rm_ext/">6.5 rm 제외</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch06/6.ps/">6.6 ps 제외</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch06/7.kill/">6.7 kill 제외</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">7. 제어문</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch07/1.control/">7.1 제어문</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch07/2.condi/">6.2 조건연산자</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">8. 환경변수</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch08/1.login/">7.1 로그인</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch08/2.bashrc/">6.2 bashrc</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">9. 스크립트</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch09/1.systemd/">9.1 systemd I</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch09/2.systemdu/">9.2 systemd II</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch09/3.crontab/">9.3 crontab</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">쉘프로그램(Bash)</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">5. 명령어</li>
+      <li class="breadcrumb-item active">5.1 표준입출력</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="standard-io-0-1-2"><strong>표준 입출력 (Standard I/O)와 파일 디스크립터 번호 (0, 1, 2)</strong></h1>
+<p>쉘에서는 **표준 입출력(standard I/O)**을 사용하여 프로그램과 사용자 간 데이터를 주고받음.<br />
+각 입출력 스트림에는 고유한 **파일 디스크립터(File Descriptor, FD) 번호**가 할당됨.  </p>
+<hr />
+<h2 id="1"><strong>1. 표준 입출력 스트림과 파일 디스크립터 번호</strong></h2>
+<table>
+<thead>
+<tr>
+<th>파일 디스크립터(FD)</th>
+<th>스트림 이름</th>
+<th>설명</th>
+<th>기본 대상</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>0</strong></td>
+<td><strong>표준 입력 (stdin)</strong></td>
+<td>사용자 입력을 받는 스트림</td>
+<td>키보드</td>
+</tr>
+<tr>
+<td><strong>1</strong></td>
+<td><strong>표준 출력 (stdout)</strong></td>
+<td>프로그램 실행 결과를 출력하는 스트림</td>
+<td>터미널</td>
+</tr>
+<tr>
+<td><strong>2</strong></td>
+<td><strong>표준 오류 (stderr)</strong></td>
+<td>오류 메시지를 출력하는 스트림</td>
+<td>터미널</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="2-standard-input-stdin-0"><strong>2. 표준 입력 (Standard Input, <code>stdin</code>, 파일 디스크립터 <code>0</code>)</strong></h2>
+<ul>
+<li>프로그램이 <strong>사용자로부터 입력을 받을 때 사용하는 스트림</strong>  </li>
+<li>기본적으로 **키보드**에서 입력을 받음  </li>
+<li><code>&lt;</code> 리디렉션을 사용하여 파일에서 입력을 받을 수도 있음  </li>
+</ul>
+<h4 id="1-read"><strong>예제 1: <code>read</code>를 사용한 표준 입력</strong></h4>
+<div class="highlight"><pre><span></span><code><span class="ch">#!/bin/bash</span>
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;이름을 입력하세요:&quot;</span>
+<span class="nb">read</span><span class="w"> </span>name<span class="w">  </span><span class="c1"># 표준 입력 (키보드)</span>
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;입력된 이름: </span><span class="nv">$name</span><span class="s2">&quot;</span>
+</code></pre></div>
+<h4 id="_1"><strong>실행 결과</strong></h4>
+<div class="highlight"><pre><span></span><code>이름을 입력하세요:
+Alice
+입력된 이름: Alice
+</code></pre></div>
+<h4 id="2"><strong>예제 2: 파일에서 표준 입력 받기 (<code>&lt;</code> 리디렉션)</strong></h4>
+<p><div class="highlight"><pre><span></span><code>sort<span class="w"> </span>&lt;<span class="w"> </span>names.txt
+</code></pre></div>
+- <code>names.txt</code> 파일을 입력으로 받아 정렬하여 출력  </p>
+<hr />
+<h2 id="3-standard-output-stdout-1"><strong>3. 표준 출력 (Standard Output, <code>stdout</code>, 파일 디스크립터 <code>1</code>)</strong></h2>
+<ul>
+<li><strong>프로그램 실행 결과를 출력하는 스트림</strong>  </li>
+<li>기본적으로 <strong>터미널(화면)에 출력</strong>  </li>
+<li><code>&gt;</code> 또는 <code>&gt;&gt;</code> 리디렉션을 사용하여 파일에 저장 가능  </li>
+</ul>
+<h4 id="1_1"><strong>예제 1: 기본적인 표준 출력</strong></h4>
+<div class="highlight"><pre><span></span><code><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Hello, World!&quot;</span>
+</code></pre></div>
+<h4 id="_2"><strong>실행 결과</strong></h4>
+<p><div class="highlight"><pre><span></span><code>Hello, World!
+</code></pre></div>
+(터미널에 출력됨)</p>
+<h4 id="2_1"><strong>예제 2: 표준 출력을 파일로 리디렉션 (<code>&gt;</code>, <code>&gt;&gt;</code>)</strong></h4>
+<p><div class="highlight"><pre><span></span><code><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;로그 메시지&quot;</span><span class="w"> </span>&gt;<span class="w"> </span>log.txt<span class="w">  </span><span class="c1"># 기존 내용 덮어쓰기</span>
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;추가 메시지&quot;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>log.txt<span class="w">  </span><span class="c1"># 기존 내용 유지하고 추가</span>
+</code></pre></div>
+- <code>log.txt</code> 파일에 <code>"로그 메시지"</code> 저장<br />
+- <code>"추가 메시지"</code>를 파일 끝에 추가  </p>
+<hr />
+<h2 id="4-standard-error-stderr-2"><strong>4. 표준 오류 (Standard Error, <code>stderr</code>, 파일 디스크립터 <code>2</code>)</strong></h2>
+<ul>
+<li><strong>프로그램 실행 중 발생한 오류 메시지를 출력하는 스트림</strong>  </li>
+<li>기본적으로 <strong>터미널(화면)에 출력</strong>  </li>
+<li><code>2&gt;</code> 또는 <code>2&gt;&gt;</code> 리디렉션을 사용하여 파일로 저장 가능  </li>
+</ul>
+<h4 id="1_2"><strong>예제 1: 존재하지 않는 파일 실행 (오류 발생)</strong></h4>
+<div class="highlight"><pre><span></span><code>ls<span class="w"> </span>nonexistentfile
+</code></pre></div>
+<h4 id="_3"><strong>실행 결과</strong></h4>
+<p><div class="highlight"><pre><span></span><code>ls: cannot access &#39;nonexistentfile&#39;: No such file or directory
+</code></pre></div>
+(오류 메시지가 터미널에 출력됨)</p>
+<h4 id="2-2-2"><strong>예제 2: 표준 오류를 파일로 저장 (<code>2&gt;</code>, <code>2&gt;&gt;</code>)</strong></h4>
+<p><div class="highlight"><pre><span></span><code>ls<span class="w"> </span>nonexistentfile<span class="w"> </span><span class="m">2</span>&gt;<span class="w"> </span>error.log<span class="w">  </span><span class="c1"># 오류 메시지를 error.log에 저장</span>
+ls<span class="w"> </span>anotherfile<span class="w"> </span><span class="m">2</span>&gt;&gt;<span class="w"> </span>error.log<span class="w">  </span><span class="c1"># 기존 오류 로그에 추가</span>
+</code></pre></div>
+- <code>2&gt;</code> → <code>error.log</code>에 오류 메시지 저장 (덮어쓰기)<br />
+- <code>2&gt;&gt;</code> → <code>error.log</code>에 오류 메시지 추가  </p>
+<hr />
+<h2 id="5"><strong>5. 표준 입출력 리디렉션 및 조합</strong></h2>
+<h3 id="1_3"><strong>1) 표준 출력과 표준 오류를 동시에 파일로 저장 (<code>&amp;&gt;</code>)</strong></h3>
+<p><div class="highlight"><pre><span></span><code>ls<span class="w"> </span>validfile<span class="w"> </span>nonexistentfile<span class="w"> </span><span class="p">&amp;</span>&gt;<span class="w"> </span>output.log
+</code></pre></div>
+- <code>output.log</code>에 <strong>표준 출력과 표준 오류를 함께 저장</strong>  </p>
+<hr />
+<h3 id="2_2"><strong>2) 표준 출력을 파일로 저장하고, 오류는 화면에 출력</strong></h3>
+<p><div class="highlight"><pre><span></span><code>ls<span class="w"> </span>validfile<span class="w"> </span>nonexistentfile<span class="w"> </span>&gt;<span class="w"> </span>output.log<span class="w"> </span><span class="m">2</span>&gt;<span class="p">&amp;</span><span class="m">1</span>
+</code></pre></div>
+- <code>output.log</code> → 표준 출력과 표준 오류를 함께 저장<br />
+- <code>2&gt;&amp;1</code> → <strong>표준 오류(2)를 표준 출력(1)으로 합침</strong>  </p>
+<hr />
+<h3 id="3-2devnull"><strong>3) 표준 오류만 화면에서 숨기기 (<code>2&gt;/dev/null</code>)</strong></h3>
+<p><div class="highlight"><pre><span></span><code>ls<span class="w"> </span>nonexistentfile<span class="w"> </span><span class="m">2</span>&gt;/dev/null
+</code></pre></div>
+- 오류 메시지를 <code>/dev/null</code>로 보내서 화면에서 숨김  </p>
+<hr />
+<h3 id="4"><strong>4) 표준 입력을 파일에서 가져오기 (<code>&lt;</code>)</strong></h3>
+<p><div class="highlight"><pre><span></span><code>sort<span class="w"> </span>&lt;<span class="w"> </span>names.txt
+</code></pre></div>
+- <code>names.txt</code> 파일을 입력으로 받아 정렬하여 출력  </p>
+<hr />
+<h3 id="5_1"><strong>5) 표준 입력, 출력, 오류를 조합한 예제</strong></h3>
+<p><div class="highlight"><pre><span></span><code><span class="nb">command</span><span class="w"> </span>&lt;<span class="w"> </span>input.txt<span class="w"> </span>&gt;<span class="w"> </span>output.txt<span class="w"> </span><span class="m">2</span>&gt;<span class="w"> </span>error.log
+</code></pre></div>
+- <code>input.txt</code> → 표준 입력으로 사용<br />
+- <code>output.txt</code> → 표준 출력 저장<br />
+- <code>error.log</code> → 표준 오류 저장  </p>
+<hr />
+<h2 id="6"><strong>6. 표준 입출력 정리</strong></h2>
+<table>
+<thead>
+<tr>
+<th>파일 디스크립터</th>
+<th>스트림</th>
+<th>설명</th>
+<th>기본 대상</th>
+<th>리디렉션</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>0</strong></td>
+<td>표준 입력 (<code>stdin</code>)</td>
+<td>사용자 입력을 받는 스트림</td>
+<td>키보드</td>
+<td><code>&lt;</code></td>
+</tr>
+<tr>
+<td><strong>1</strong></td>
+<td>표준 출력 (<code>stdout</code>)</td>
+<td>프로그램 실행 결과를 출력하는 스트림</td>
+<td>터미널</td>
+<td><code>&gt;</code> (덮어쓰기), <code>&gt;&gt;</code> (추가)</td>
+</tr>
+<tr>
+<td><strong>2</strong></td>
+<td>표준 오류 (<code>stderr</code>)</td>
+<td>오류 메시지를 출력하는 스트림</td>
+<td>터미널</td>
+<td><code>2&gt;</code>, <code>2&gt;&gt;</code></td>
+</tr>
+</tbody>
+</table>
+<p>쉘 스크립트에서 **표준 입출력과 리디렉션을 활용하면 효율적인 데이터 처리 및 자동화 작업이 가능**함 🚀</p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../../ch04/3.return_ex/" class="btn btn-neutral float-left" title="4.3 반환값II"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../2.run/" class="btn btn-neutral float-right" title="5.2 명령실행">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../../ch04/3.return_ex/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../2.run/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

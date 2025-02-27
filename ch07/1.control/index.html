@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://rco123.github.io/man_shell_program/ch07/1.control/" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>7.1 제어문 - 쉘프로그램(Bash)</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../../css/style.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "7.1 \uc81c\uc5b4\ubb38";
+        var mkdocs_page_input_path = "ch07\\1.control.md";
+        var mkdocs_page_url = "/man_shell_program/ch07/1.control/";
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> 쉘프로그램(Bash)
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../..">Home</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">1. 시작하기</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch01/1.bash/">1.1 개요</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch01/2.cmd/">1.2 cmd</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch01/3.app/">1.3 app</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">2. 변수</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch02/1.var/">2.1 변수만들기</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch02/2.var_ext/">2.2 변수확장</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch02/3.math/">2.3 숫자연산</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch02/4.exam/">2.4 실습</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch02/5.array/">2.5 배열</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">3. 문자열</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch03/1.string/">3.1 문자열</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch03/2.char/">3.2 특수문자</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch03/3.exam/">3.3 실습</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">4. 함수</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch04/1.func/">4.1 함수만들기</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch04/2.return/">4.2 반환값I</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch04/3.return_ex/">4.3 반환값II</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">5. 명령어</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch05/1.stdio/">5.1 표준입출력</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch05/2.run/">5.2 명령실행</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch05/3.pipe/">5.3 파이프</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">6. 명령어II</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch06/1.find/">6.1 find</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch06/2.grep/">6.2 grep</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch06/3.grep_ext/">6.3 grep 정규식</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch06/4.rm/">6.4 rm</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch06/5.rm_ext/">6.5 rm 제외</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch06/6.ps/">6.6 ps 제외</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch06/7.kill/">6.7 kill 제외</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">7. 제어문</span></p>
+              <ul class="current">
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">7.1 제어문</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#1">1. 개요</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#2-conditional-statements">2. 조건문 (Conditional Statements)</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#21-if">2.1 if 문</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#_2">문법</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#_3">사용 예제</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#22-if-else">2.2 if-else 문</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#_4">문법</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#_5">사용 예제</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#23-if-elif-else">2.3 if-elif-else 문</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#_6">문법</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#_7">사용 예제</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#24-case">2.4 case 문</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#_8">문법</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#_9">사용 예제</a>
+    </li>
+        </ul>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#3-loop-statements">3. 반복문 (Loop Statements)</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#31-for">3.1 for 문</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#_10">문법</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#_11">사용 예제</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#32-while">3.2 while 문</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#_12">문법</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#_13">사용 예제</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#33-until">3.3 until 문</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#_14">문법</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#_15">사용 예제</a>
+    </li>
+        </ul>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#4-break-continue">4. 분기문 (Break &amp; Continue)</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#41-break">4.1 break 문 (반복문 종료)</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#_16">사용 예제</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#42-continue">4.2 continue 문 (현재 반복 건너뛰기)</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#_17">사용 예제</a>
+    </li>
+        </ul>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#5">5. 정리</a>
+    </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../2.condi/">6.2 조건연산자</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">8. 환경변수</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch08/1.login/">7.1 로그인</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch08/2.bashrc/">6.2 bashrc</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">9. 스크립트</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch09/1.systemd/">9.1 systemd I</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch09/2.systemdu/">9.2 systemd II</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch09/3.crontab/">9.3 crontab</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">쉘프로그램(Bash)</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">7. 제어문</li>
+      <li class="breadcrumb-item active">7.1 제어문</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="_1"><strong>제어문</strong></h1>
+<h2 id="1"><strong>1. 개요</strong></h2>
+<p>쉘 스크립트에서 <strong>제어문(Control Statements)</strong> 은 프로그램의 흐름을 제어하는 중요한 기능입니다.<br />
+제어문을 사용하면 <strong>조건 판단, 반복 실행, 논리적 흐름 조정</strong> 등을 수행할 수 있습니다.  </p>
+<p>제어문은 크게 **조건문, 반복문, 논리 연산자, 분기문**으로 구분됩니다.</p>
+<hr />
+<h2 id="2-conditional-statements"><strong>2. 조건문 (Conditional Statements)</strong></h2>
+<p>조건문은 특정 조건이 참인지 거짓인지에 따라 코드 실행 여부를 결정하는 구조입니다.<br />
+쉘에서는 <code>if</code>, <code>elif</code>, <code>case</code> 등을 사용하여 조건을 판단합니다.</p>
+<h3 id="21-if"><strong>2.1 <code>if</code> 문</strong></h3>
+<p><code>if</code> 문은 특정 조건이 참일 때만 명령을 실행하는 제어문입니다.</p>
+<h4 id="_2"><strong>문법</strong></h4>
+<div class="highlight"><pre><span></span><code><span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span>조건<span class="w"> </span><span class="o">]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="w">    </span>실행할<span class="w"> </span>명령어
+<span class="k">fi</span>
+</code></pre></div>
+<h4 id="_3"><strong>사용 예제</strong></h4>
+<div class="highlight"><pre><span></span><code><span class="nv">num</span><span class="o">=</span><span class="m">10</span>
+<span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$num</span><span class="s2">&quot;</span><span class="w"> </span>-gt<span class="w"> </span><span class="m">5</span><span class="w"> </span><span class="o">]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;숫자가 5보다 큽니다.&quot;</span>
+<span class="k">fi</span>
+</code></pre></div>
+<hr />
+<h3 id="22-if-else"><strong>2.2 <code>if-else</code> 문</strong></h3>
+<p><code>if-else</code> 문은 조건이 참이면 특정 명령을 실행하고, 거짓이면 다른 명령을 실행합니다.</p>
+<h4 id="_4"><strong>문법</strong></h4>
+<div class="highlight"><pre><span></span><code><span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span>조건<span class="w"> </span><span class="o">]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="w">    </span>실행할<span class="w"> </span>명령어1
+<span class="k">else</span>
+<span class="w">    </span>실행할<span class="w"> </span>명령어2
+<span class="k">fi</span>
+</code></pre></div>
+<h4 id="_5"><strong>사용 예제</strong></h4>
+<div class="highlight"><pre><span></span><code><span class="nv">num</span><span class="o">=</span><span class="m">3</span>
+<span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$num</span><span class="s2">&quot;</span><span class="w"> </span>-gt<span class="w"> </span><span class="m">5</span><span class="w"> </span><span class="o">]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;5보다 큽니다.&quot;</span>
+<span class="k">else</span>
+<span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;5보다 작거나 같습니다.&quot;</span>
+<span class="k">fi</span>
+</code></pre></div>
+<hr />
+<h3 id="23-if-elif-else"><strong>2.3 <code>if-elif-else</code> 문</strong></h3>
+<p>여러 개의 조건을 차례대로 검사할 때 사용합니다.</p>
+<h4 id="_6"><strong>문법</strong></h4>
+<div class="highlight"><pre><span></span><code><span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span>조건1<span class="w"> </span><span class="o">]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="w">    </span>실행할<span class="w"> </span>명령어1
+<span class="k">elif</span><span class="w"> </span><span class="o">[</span><span class="w"> </span>조건2<span class="w"> </span><span class="o">]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="w">    </span>실행할<span class="w"> </span>명령어2
+<span class="k">else</span>
+<span class="w">    </span>실행할<span class="w"> </span>명령어3
+<span class="k">fi</span>
+</code></pre></div>
+<h4 id="_7"><strong>사용 예제</strong></h4>
+<div class="highlight"><pre><span></span><code><span class="nv">num</span><span class="o">=</span><span class="m">20</span>
+<span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$num</span><span class="s2">&quot;</span><span class="w"> </span>-lt<span class="w"> </span><span class="m">10</span><span class="w"> </span><span class="o">]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;10 미만입니다.&quot;</span>
+<span class="k">elif</span><span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$num</span><span class="s2">&quot;</span><span class="w"> </span>-lt<span class="w"> </span><span class="m">30</span><span class="w"> </span><span class="o">]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;10 이상 30 미만입니다.&quot;</span>
+<span class="k">else</span>
+<span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;30 이상입니다.&quot;</span>
+<span class="k">fi</span>
+</code></pre></div>
+<hr />
+<h3 id="24-case"><strong>2.4 <code>case</code> 문</strong></h3>
+<p><code>case</code> 문은 여러 개의 조건을 쉽게 표현할 수 있는 방법입니다.</p>
+<h4 id="_8"><strong>문법</strong></h4>
+<div class="highlight"><pre><span></span><code><span class="k">case</span><span class="w"> </span><span class="s2">&quot;</span>$<span class="s2">변수&quot;</span><span class="w"> </span><span class="k">in</span>
+<span class="w">    </span>값1<span class="o">)</span><span class="w"> </span>실행할<span class="w"> </span>명령어<span class="w"> </span><span class="p">;;</span>
+<span class="w">    </span>값2<span class="o">)</span><span class="w"> </span>실행할<span class="w"> </span>명령어<span class="w"> </span><span class="p">;;</span>
+<span class="w">    </span>*<span class="o">)</span><span class="w"> </span>기본<span class="w"> </span>실행<span class="w"> </span>명령어<span class="w"> </span><span class="p">;;</span>
+<span class="k">esac</span>
+</code></pre></div>
+<h4 id="_9"><strong>사용 예제</strong></h4>
+<div class="highlight"><pre><span></span><code><span class="nb">read</span><span class="w"> </span>-p<span class="w"> </span><span class="s2">&quot;과일을 입력하세요: &quot;</span><span class="w"> </span>fruit
+<span class="k">case</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$fruit</span><span class="s2">&quot;</span><span class="w"> </span><span class="k">in</span>
+<span class="w">    </span>apple<span class="o">)</span><span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;사과를 선택했습니다.&quot;</span><span class="w"> </span><span class="p">;;</span>
+<span class="w">    </span>banana<span class="o">)</span><span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;바나나를 선택했습니다.&quot;</span><span class="w"> </span><span class="p">;;</span>
+<span class="w">    </span>*<span class="o">)</span><span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;알 수 없는 과일입니다.&quot;</span><span class="w"> </span><span class="p">;;</span>
+<span class="k">esac</span>
+</code></pre></div>
+<hr />
+<h2 id="3-loop-statements"><strong>3. 반복문 (Loop Statements)</strong></h2>
+<p>반복문은 특정 조건이 충족될 때까지 명령을 반복 실행하는 구조입니다.<br />
+쉘에서는 <code>for</code>, <code>while</code>, <code>until</code> 문이 제공됩니다.</p>
+<h3 id="31-for"><strong>3.1 <code>for</code> 문</strong></h3>
+<p><code>for</code> 문은 리스트의 각 항목에 대해 반복 실행합니다.</p>
+<h4 id="_10"><strong>문법</strong></h4>
+<div class="highlight"><pre><span></span><code><span class="k">for</span><span class="w"> </span>변수<span class="w"> </span><span class="k">in</span><span class="w"> </span>값1<span class="w"> </span>값2<span class="w"> </span>값3<span class="p">;</span><span class="w"> </span><span class="k">do</span>
+<span class="w">    </span>실행할<span class="w"> </span>명령어
+<span class="k">done</span>
+</code></pre></div>
+<h4 id="_11"><strong>사용 예제</strong></h4>
+<div class="highlight"><pre><span></span><code><span class="k">for</span><span class="w"> </span>file<span class="w"> </span><span class="k">in</span><span class="w"> </span>file1.txt<span class="w"> </span>file2.txt<span class="w"> </span>file3.txt<span class="p">;</span><span class="w"> </span><span class="k">do</span>
+<span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$file</span><span class="s2"> 을 처리 중...&quot;</span>
+<span class="k">done</span>
+</code></pre></div>
+<hr />
+<h3 id="32-while"><strong>3.2 <code>while</code> 문</strong></h3>
+<p><code>while</code> 문은 조건이 참일 동안 반복 실행합니다.</p>
+<h4 id="_12"><strong>문법</strong></h4>
+<div class="highlight"><pre><span></span><code><span class="k">while</span><span class="w"> </span><span class="o">[</span><span class="w"> </span>조건<span class="w"> </span><span class="o">]</span><span class="p">;</span><span class="w"> </span><span class="k">do</span>
+<span class="w">    </span>실행할<span class="w"> </span>명령어
+<span class="k">done</span>
+</code></pre></div>
+<h4 id="_13"><strong>사용 예제</strong></h4>
+<div class="highlight"><pre><span></span><code><span class="nv">count</span><span class="o">=</span><span class="m">5</span>
+<span class="k">while</span><span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$count</span><span class="s2">&quot;</span><span class="w"> </span>-gt<span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="o">]</span><span class="p">;</span><span class="w"> </span><span class="k">do</span>
+<span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;카운트다운: </span><span class="nv">$count</span><span class="s2">&quot;</span>
+<span class="w">    </span><span class="nv">count</span><span class="o">=</span><span class="k">$((</span><span class="nv">count</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="m">1</span><span class="k">))</span>
+<span class="w">    </span>sleep<span class="w"> </span><span class="m">1</span>
+<span class="k">done</span>
+</code></pre></div>
+<hr />
+<h3 id="33-until"><strong>3.3 <code>until</code> 문</strong></h3>
+<p><code>until</code> 문은 조건이 거짓일 동안 반복 실행합니다.</p>
+<h4 id="_14"><strong>문법</strong></h4>
+<div class="highlight"><pre><span></span><code><span class="k">until</span><span class="w"> </span><span class="o">[</span><span class="w"> </span>조건<span class="w"> </span><span class="o">]</span><span class="p">;</span><span class="w"> </span><span class="k">do</span>
+<span class="w">    </span>실행할<span class="w"> </span>명령어
+<span class="k">done</span>
+</code></pre></div>
+<h4 id="_15"><strong>사용 예제</strong></h4>
+<div class="highlight"><pre><span></span><code><span class="k">until</span><span class="w"> </span><span class="o">[</span><span class="w"> </span>-f<span class="w"> </span><span class="s2">&quot;/tmp/ready.txt&quot;</span><span class="w"> </span><span class="o">]</span><span class="p">;</span><span class="w"> </span><span class="k">do</span>
+<span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;파일을 기다리는 중...&quot;</span>
+<span class="w">    </span>sleep<span class="w"> </span><span class="m">1</span>
+<span class="k">done</span>
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;파일이 생성되었습니다!&quot;</span>
+</code></pre></div>
+<hr />
+<h2 id="4-break-continue"><strong>4. 분기문 (Break &amp; Continue)</strong></h2>
+<p>반복문 실행 중 특정 조건이 충족될 경우 반복을 중단하거나 건너뛸 수 있습니다.</p>
+<h3 id="41-break"><strong>4.1 <code>break</code> 문 (반복문 종료)</strong></h3>
+<p><code>break</code> 문은 반복문을 즉시 종료합니다.</p>
+<h4 id="_16"><strong>사용 예제</strong></h4>
+<div class="highlight"><pre><span></span><code><span class="k">for</span><span class="w"> </span>i<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="o">{</span><span class="m">1</span>..10<span class="o">}</span><span class="p">;</span><span class="w"> </span><span class="k">do</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$i</span><span class="s2">&quot;</span><span class="w"> </span>-eq<span class="w"> </span><span class="m">5</span><span class="w"> </span><span class="o">]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="w">        </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;5에서 중단!&quot;</span>
+<span class="w">        </span><span class="k">break</span>
+<span class="w">    </span><span class="k">fi</span>
+<span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$i</span><span class="s2">&quot;</span>
+<span class="k">done</span>
+</code></pre></div>
+<hr />
+<h3 id="42-continue"><strong>4.2 <code>continue</code> 문 (현재 반복 건너뛰기)</strong></h3>
+<p><code>continue</code> 문은 현재 반복을 건너뛰고 다음 반복으로 이동합니다.</p>
+<h4 id="_17"><strong>사용 예제</strong></h4>
+<div class="highlight"><pre><span></span><code><span class="k">for</span><span class="w"> </span>i<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="o">{</span><span class="m">1</span>..5<span class="o">}</span><span class="p">;</span><span class="w"> </span><span class="k">do</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$i</span><span class="s2">&quot;</span><span class="w"> </span>-eq<span class="w"> </span><span class="m">3</span><span class="w"> </span><span class="o">]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="w">        </span><span class="k">continue</span>
+<span class="w">    </span><span class="k">fi</span>
+<span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$i</span><span class="s2">&quot;</span>
+<span class="k">done</span>
+</code></pre></div>
+<hr />
+<h2 id="5"><strong>5. 정리</strong></h2>
+<table>
+<thead>
+<tr>
+<th>분류</th>
+<th>문법</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>조건문</strong></td>
+<td><code>if</code>, <code>elif</code>, <code>else</code>, <code>case</code></td>
+</tr>
+<tr>
+<td><strong>반복문</strong></td>
+<td><code>for</code>, <code>while</code>, <code>until</code></td>
+</tr>
+<tr>
+<td><strong>분기문</strong></td>
+<td><code>break</code>, <code>continue</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>쉘 스크립트에서 제어문을 활용하면 자동화된 스크립트 작성을 더욱 효과적으로 할 수 있습니다! 🚀</strong></p>
+<p><br></p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../../ch06/7.kill/" class="btn btn-neutral float-left" title="6.7 kill 제외"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../2.condi/" class="btn btn-neutral float-right" title="6.2 조건연산자">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../../ch06/7.kill/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../2.condi/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

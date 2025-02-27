@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://rco123.github.io/man_shell_program/ch09/2.systemdu/" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>9.2 systemd II - 쉘프로그램(Bash)</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../../css/style.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "9.2 systemd II";
+        var mkdocs_page_input_path = "ch09\\2.systemdu.md";
+        var mkdocs_page_url = "/man_shell_program/ch09/2.systemdu/";
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> 쉘프로그램(Bash)
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../..">Home</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">1. 시작하기</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch01/1.bash/">1.1 개요</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch01/2.cmd/">1.2 cmd</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch01/3.app/">1.3 app</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">2. 변수</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch02/1.var/">2.1 변수만들기</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch02/2.var_ext/">2.2 변수확장</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch02/3.math/">2.3 숫자연산</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch02/4.exam/">2.4 실습</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch02/5.array/">2.5 배열</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">3. 문자열</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch03/1.string/">3.1 문자열</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch03/2.char/">3.2 특수문자</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch03/3.exam/">3.3 실습</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">4. 함수</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch04/1.func/">4.1 함수만들기</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch04/2.return/">4.2 반환값I</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch04/3.return_ex/">4.3 반환값II</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">5. 명령어</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch05/1.stdio/">5.1 표준입출력</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch05/2.run/">5.2 명령실행</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch05/3.pipe/">5.3 파이프</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">6. 명령어II</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch06/1.find/">6.1 find</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch06/2.grep/">6.2 grep</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch06/3.grep_ext/">6.3 grep 정규식</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch06/4.rm/">6.4 rm</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch06/5.rm_ext/">6.5 rm 제외</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch06/6.ps/">6.6 ps 제외</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch06/7.kill/">6.7 kill 제외</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">7. 제어문</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch07/1.control/">7.1 제어문</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch07/2.condi/">6.2 조건연산자</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">8. 환경변수</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch08/1.login/">7.1 로그인</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ch08/2.bashrc/">6.2 bashrc</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">9. 스크립트</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../1.systemd/">9.1 systemd I</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">9.2 systemd II</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#1-app">1. 간단한 App 예제 작성</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#homejetsonjetappsh">/home/jetson/jetapp.sh</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_1">스크립트 배포 및 실행 권한 부여</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#2-jet_env">2. 환경 변수 파일 (jet_env) 샘플 작성</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#homejetsonjet_env">/home/jetson/jet_env</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#3">3. 서비스 방식에 따른 설정 및 부팅 시 자동 실행</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#3-1">3-1. 사용자 서비스 방식</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#3-1-1">3-1-1. 사용자 단위 서비스 유닛 파일 작성</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#3-2-2">3-2-2. 사용자 서비스 활성화 및 부팅 시 자동 실행 설정</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#3-2-3-lingering">3-2-3. 로그인 없이 부팅 시 자동 실행(lingering) 설정</a>
+    </li>
+        </ul>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#4">4. 전체 요약</a>
+    </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../3.crontab/">9.3 crontab</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">쉘프로그램(Bash)</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">9. 스크립트</li>
+      <li class="breadcrumb-item active">9.2 systemd II</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="systemctl-user">systemctl (USER)</h1>
+<p>Jetson 부팅 시 "jetapp" 자동 실행 설정 및 간단한 App 예제 (사용자 디렉토리 활용) 에 대한 설명</p>
+<p>jetson 사용자가 부팅 시 "/home/jetson/jetapp.sh" 스크립트를 자동으로 실행하도록 설정하는 전체 과정을 순서대로 설명합니다. 이 예제에서는 스크립트가 "/home/jetson/jetapp.log" 파일에 로그를 남기며, 추가로 "/home/jetson/jet_env" 파일을 사용하여 환경 변수를 로드하도록 구성합니다.</p>
+<p>부팅 시 자동으로 실행할 간단한 앱(jetapp.sh)을 먼저 작성한 후, 이를 systemd 서비스로 등록하여 부팅 시 자동 실행되도록 설정하는 과정을 단계별로 설명합니다.<br />
+특히, 스크립트 파일과 로그 파일은 모두 <code>/home/jetson</code> 디렉토리에 위치하며, 환경 변수는 별도의 환경 파일(<code>/home/jetson/jet_env</code>)을 통해 설정합니다.</p>
+<hr />
+<h2 id="1-app">1. 간단한 App 예제 작성</h2>
+<p>다음은 간단한 Bash 스크립트 예제입니다. 이 스크립트는 실행되면 <code>/home/jetson/jetapp.log</code> 파일에 시작 시간, 환경 변수 값(예: checkval) 및 10초마다 현재 시간을 기록합니다.</p>
+<h3 id="homejetsonjetappsh">/home/jetson/jetapp.sh</h3>
+<div class="highlight"><pre><span></span><code><span class="ch">#!/bin/bash</span>
+<span class="c1"># jetapp.sh - 간단한 예제 앱</span>
+
+<span class="nv">LOGFILE</span><span class="o">=</span><span class="s2">&quot;/home/jetson/jetapp.log&quot;</span>
+
+<span class="c1"># 환경 변수 출력 (jet_env 파일을 통해 설정한 값이 반영됨)</span>
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;===================&quot;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$LOGFILE</span><span class="s2">&quot;</span>
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Current environment:&quot;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$LOGFILE</span><span class="s2">&quot;</span>
+env<span class="w"> </span>&gt;&gt;<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$LOGFILE</span><span class="s2">&quot;</span>
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;===================&quot;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$LOGFILE</span><span class="s2">&quot;</span>
+
+<span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span>-n<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$checkval</span><span class="s2">&quot;</span><span class="w"> </span><span class="o">]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;checkval is </span><span class="nv">$checkval</span><span class="s2">&quot;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$LOGFILE</span><span class="s2">&quot;</span>
+<span class="k">else</span>
+<span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;checkval is not exist&quot;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$LOGFILE</span><span class="s2">&quot;</span>
+<span class="k">fi</span>
+
+<span class="c1"># 시작 시 기록</span>
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;JetApp started at </span><span class="k">$(</span>date<span class="k">)</span><span class="s2">&quot;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$LOGFILE</span><span class="s2">&quot;</span>
+
+<span class="c1"># 무한 반복하여 현재 시간 기록</span>
+<span class="k">while</span><span class="w"> </span>true<span class="p">;</span><span class="w"> </span><span class="k">do</span>
+<span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;JetApp is running at </span><span class="k">$(</span>date<span class="k">)</span><span class="s2">&quot;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$LOGFILE</span><span class="s2">&quot;</span>
+<span class="w">    </span>sleep<span class="w"> </span><span class="m">10</span>
+<span class="k">done</span>
+</code></pre></div>
+<h3 id="_1">스크립트 배포 및 실행 권한 부여</h3>
+<ol>
+<li>위 코드를 <code>/home/jetson/jetapp.sh</code> 파일로 저장합니다.</li>
+<li>파일에 실행 권한을 부여합니다.</li>
+</ol>
+<div class="highlight"><pre><span></span><code>chmod<span class="w"> </span>+x<span class="w"> </span>/home/jetson/jetapp.sh
+</code></pre></div>
+<hr />
+<h2 id="2-jet_env">2. 환경 변수 파일 (jet_env) 샘플 작성</h2>
+<p>환경 변수 파일은 systemd가 서비스를 시작할 때 필요한 환경 변수를 로드하는 용도로 사용됩니다.<br />
+예를 들어, 아래와 같이 <code>/home/jetson/jet_env</code> 파일을 작성할 수 있습니다.</p>
+<h3 id="homejetsonjet_env">/home/jetson/jet_env</h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># /home/jetson/jet_env - 환경 변수 설정 파일</span>
+<span class="nv">checkval</span><span class="o">=</span>hello
+<span class="c1"># 추가 환경 변수를 아래와 같이 정의할 수 있습니다.</span>
+<span class="nv">ANOTHER_VAR</span><span class="o">=</span>sample_value
+</code></pre></div>
+<p><em>주의:</em> EnvironmentFile은 각 줄마다 <code>KEY=value</code> 형식으로 작성해야 하며, 한 줄에 여러 변수를 나열하면 올바르게 파싱되지 않습니다.</p>
+<hr />
+<h2 id="3">3. 서비스 방식에 따른 설정 및 부팅 시 자동 실행</h2>
+<p>작성한 스크립트와 환경 변수 파일을 부팅 시 자동 실행하도록 systemd 서비스로 등록하는 방법을 두 가지 방식(시스템 서비스와 사용자 서비스)으로 설명합니다.</p>
+<h3 id="3-1">3-1. 사용자 서비스 방식</h3>
+<p>사용자 단위 서비스는 jetson 사용자의 홈 디렉토리 내에서 관리되며, 사용자가 직접 제어할 수 있습니다.<br />
+기본적으로 사용자가 로그인되어야 실행되므로, 로그인 없이 부팅 시 실행하려면 lingering 설정을 추가해야 합니다.</p>
+<h4 id="3-1-1">3-1-1. 사용자 단위 서비스 유닛 파일 작성</h4>
+<p>jetson 사용자의 홈 디렉토리 내 <code>~/.config/systemd/user/</code> 폴더에 서비스 유닛 파일을 생성합니다. 디렉토리가 없으면 생성합니다.</p>
+<div class="highlight"><pre><span></span><code>mkdir<span class="w"> </span>-p<span class="w"> </span>~/.config/systemd/user/
+</code></pre></div>
+<p>그리고 <code>~/.config/systemd/user/jetapp.service</code> 파일을 다음과 같이 작성합니다.</p>
+<div class="highlight"><pre><span></span><code><span class="k">[Unit]</span>
+<span class="na">Description</span><span class="o">=</span><span class="s">JetApp Service</span>
+
+<span class="k">[Service]</span>
+<span class="na">ExecStart</span><span class="o">=</span><span class="s">/home/jetson/jetapp.sh</span>
+<span class="na">Restart</span><span class="o">=</span><span class="s">always</span>
+<span class="na">EnvironmentFile</span><span class="o">=</span><span class="s">/home/jetson/jet_env</span>
+
+<span class="k">[Install]</span>
+<span class="na">WantedBy</span><span class="o">=</span><span class="s">default.target</span>
+</code></pre></div>
+<h4 id="3-2-2">3-2-2. 사용자 서비스 활성화 및 부팅 시 자동 실행 설정</h4>
+<p>터미널에서 아래 명령어를 실행합니다.</p>
+<div class="highlight"><pre><span></span><code>systemctl<span class="w"> </span>--user<span class="w"> </span>daemon-reload
+systemctl<span class="w"> </span>--user<span class="w"> </span><span class="nb">enable</span><span class="w"> </span>jetapp.service
+systemctl<span class="w"> </span>--user<span class="w"> </span>start<span class="w"> </span>jetapp.service
+</code></pre></div>
+<h4 id="3-2-3-lingering">3-2-3. 로그인 없이 부팅 시 자동 실행(lingering) 설정</h4>
+<p>사용자가 로그인하지 않아도 서비스가 실행되도록 하려면 관리자 권한으로 lingering을 활성화합니다.</p>
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>loginctl<span class="w"> </span>enable-linger<span class="w"> </span>jetson
+</code></pre></div>
+<p>취소를 하는 경우는 </p>
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>loginctl<span class="w"> </span>disable-linger<span class="w"> </span>jetson
+</code></pre></div>
+<hr />
+<h2 id="4">4. 전체 요약</h2>
+<ol>
+<li><strong>앱 예제 작성 및 배포</strong></li>
+<li><code>/home/jetson/jetapp.sh</code> 파일에 스크립트를 작성하고, 로그는 <code>/home/jetson/jetapp.log</code>에 기록  </li>
+<li>
+<p><code>chmod +x /home/jetson/jetapp.sh</code> 명령어로 실행 권한 부여</p>
+</li>
+<li>
+<p><strong>환경 변수 파일 작성</strong></p>
+</li>
+<li>
+<p><code>/home/jetson/jet_env</code> 파일을 작성하여, <code>checkval=hello</code> 등 필요한 환경 변수를 설정</p>
+</li>
+<li>
+<p><strong>서비스 유닛 파일 작성</strong></p>
+</li>
+<li>
+<p><strong>사용자 서비스 방식:</strong> <code>~/.config/systemd/user/jetapp.service</code> 파일을 작성하고 동일하게 설정</p>
+</li>
+<li>
+<p><strong>서비스 활성화 및 부팅 시 자동 실행 설정</strong></p>
+</li>
+<li>사용자 서비스의 경우:
+     <div class="highlight"><pre><span></span><code>systemctl<span class="w"> </span>--user<span class="w"> </span>daemon-reload
+systemctl<span class="w"> </span>--user<span class="w"> </span><span class="nb">enable</span><span class="w"> </span>jetapp.service
+systemctl<span class="w"> </span>--user<span class="w"> </span>start<span class="w"> </span>jetapp.service
+sudo<span class="w"> </span>loginctl<span class="w"> </span>enable-linger<span class="w"> </span>jetson
+</code></pre></div></li>
+</ol>
+<p>이와 같이 설정하면, jetson 사용자가 부팅 시 자동으로 "/home/jetson/jetapp.sh" 스크립트가 실행되어 <code>/home/jetson/jetapp.log</code> 파일에 로그를 남기며, <code>/home/jetson/jet_env</code> 파일을 통해 설정한 환경 변수도 반영됩니다.</p>
+<p><br></p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../1.systemd/" class="btn btn-neutral float-left" title="9.1 systemd I"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../3.crontab/" class="btn btn-neutral float-right" title="9.3 crontab">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../1.systemd/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../3.crontab/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>
